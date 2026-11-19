@@ -265,7 +265,7 @@
     }
 
     /* =========================================================================
-       6. TACTILE CHOICE PILLS & INTERACTIVE CONTROLS
+       6. TACTILE CHOICE PILLS & SMOOTH SLIDE-TO-ILLUMINATE CONTROL
        ========================================================================= */
     .apple-choice {
       position: relative;
@@ -323,6 +323,19 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 26px -8px rgba(16, 185, 129, 0.42);
     }
 
+    /* Dedicated Touch-Action Lock & GPU Layer for Smooth Slide-to-Illuminate */
+    #light-slider-track,
+    #light-slider-thumb {
+      touch-action: none;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+
+    #light-slider-thumb,
+    #light-slider-fill {
+      will-change: transform, width;
+    }
+
     /* Emerald Audit Stamp Animation */
     @keyframes stampDrop {
       0% {
@@ -351,11 +364,6 @@
     body.is-illuminated .golden-horizon {
       opacity: 1;
     }
-
-    /* Clean View Mode: Hides all sender controls & studio hints */
-    body.clean-view .sender-only {
-      display: none !important;
-    }
   </style>
 </head>
 
@@ -364,9 +372,8 @@
   <div class="film-grain" aria-hidden="true"></div>
   <canvas id="bokeh-canvas" class="fixed inset-0 z-30 pointer-events-none w-full h-full"></canvas>
 
-  <!-- Hidden Audio & File Picker Elements -->
+  <!-- Hidden Audio Element -->
   <audio id="scene-audio-player" preload="none" class="hidden"></audio>
-  <input type="file" id="direct-photo-picker" accept="image/*" class="hidden" />
 
   <!-- =========================================================================
        AMBIENT VOLUMETRIC AURORA LIGHT ORBS (DYNAMICALLY SHIFT PER CHAPTER)
@@ -384,19 +391,12 @@
   <div class="golden-horizon fixed inset-0 pointer-events-none z-0"
     style="background: radial-gradient(ellipse 85% 70% at 50% 42%, rgba(255, 184, 0, 0.30), rgba(255, 59, 107, 0.16) 46%, transparent 78%);"></div>
 
-  <!-- Subtle Floating Notification Pill -->
-  <div id="apple-toast" class="fixed top-16 right-4 sm:right-6 z-50 pointer-events-none opacity-0 -translate-y-2 transition-all duration-300">
-    <div class="px-3.5 py-1.5 rounded-full liquid-glass font-mono text-[11px] text-ink">
-      <span id="apple-toast-text">Updated</span>
-    </div>
-  </div>
-
   <!-- =========================================================================
        MAIN VIEWPORT SHELL (100dvh x 100vw, ZERO SCROLL, CLEAR BOTTOM EDGE)
        ========================================================================= -->
   <div class="relative z-10 w-screen h-[100dvh] flex flex-col justify-between overflow-hidden">
 
-    <!-- 1. TOP HEADER BAR: 6 PROGRESS PILLS (LEFT) + DYNAMIC ISLAND (CENTER) + STUDIO/CLEAN VIEW (RIGHT) -->
+    <!-- 1. TOP HEADER BAR: 6 PROGRESS PILLS (LEFT) + DYNAMIC ISLAND (CENTER) + DATE TAG (RIGHT) -->
     <header class="relative z-30 pt-2.5 sm:pt-3.5 px-3.5 sm:px-6 flex items-start justify-between gap-2 shrink-0 min-h-[52px]">
 
       <!-- Left: 6 Interactive Progress Pills + Chapter Telemetry -->
@@ -430,7 +430,6 @@
               <div class="flex items-center gap-2.5 min-w-0">
                 <div id="island-media-box"
                   class="w-10 h-9 rounded-xl bg-white/[0.06] border border-white/[0.14] flex items-center justify-center shrink-0 overflow-hidden relative">
-                  <video id="scene-video-player" playsinline class="hidden w-full h-full object-cover"></video>
                   <!-- 7-Bar Harmonic Audio Visualizer -->
                   <div id="island-waveform" class="flex items-center justify-center gap-[2px] h-5">
                     <span class="wave-bar h-1.5 bg-amberGlow"></span>
@@ -482,10 +481,6 @@
               <span id="island-source-badge" class="text-mist truncate">
                 AUTO-ADVANCING CHAPTER...
               </span>
-              <button type="button" onclick="openStudioDrawer()"
-                class="sender-only text-amberGlow hover:underline shrink-0">
-                + Studio Media
-              </button>
             </div>
 
             <!-- 2px Smooth Auto-Advance Progress Bar Along Bottom Edge of Dynamic Island -->
@@ -498,17 +493,9 @@
         </div>
       </div>
 
-      <!-- Right: Studio & Clean View Minimal Glass Controls -->
-      <div class="flex items-center gap-1.5 pt-0.5 shrink-0">
-        <button type="button" onclick="openStudioDrawer()"
-          class="sender-only px-3 py-1.5 rounded-full liquid-glass hover:bg-white/[0.12] font-sans text-[11px] font-medium text-ink transition active:scale-95">
-          Studio
-        </button>
-
-        <button type="button" id="clean-view-btn" onclick="toggleCleanView()"
-          class="px-3 py-1.5 rounded-full liquid-glass hover:bg-white/[0.12] font-sans text-[11px] font-medium text-mist hover:text-ink transition active:scale-95">
-          <span id="clean-view-label">Clean View</span>
-        </button>
+      <!-- Right: Symmetrical Date Telemetry Pill on Desktop -->
+      <div class="hidden sm:flex items-center pt-2 shrink-0">
+        <span class="font-mono text-[10.5px] tracking-[0.14em] text-mist/85">22.11</span>
       </div>
     </header>
 
@@ -533,8 +520,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
               <!-- Left: Dedicated 4:5 Apple Liquid Glass Portrait Frame (`assets/photo1.jpg`) -->
               <div class="md:col-span-5 flex justify-center">
-                <div onclick="handleSlotClick(1)"
-                  class="hero-portrait-frame group relative w-44 sm:w-52 md:w-full md:max-w-[260px] aspect-[4/5] max-h-[210px] sm:max-h-[250px] md:max-h-[325px] rounded-[24px] p-1.5 overflow-hidden cursor-pointer transition-transform duration-500 hover:scale-[1.015]">
+                <div class="hero-portrait-frame relative w-44 sm:w-52 md:w-full md:max-w-[260px] aspect-[4/5] max-h-[210px] sm:max-h-[250px] md:max-h-[325px] rounded-[24px] p-1.5 overflow-hidden transition-transform duration-500 hover:scale-[1.015]">
                   <!-- Soft Rose-Gold & Violet Ambient Backlight -->
                   <div class="absolute -inset-3 opacity-55 pointer-events-none blur-xl"
                     style="background: radial-gradient(circle at 25% 20%, rgba(255,59,107,0.45), transparent 55%), radial-gradient(circle at 80% 80%, rgba(168,85,247,0.45), transparent 55%);"></div>
@@ -576,9 +562,6 @@
                     <div class="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between gap-1.5">
                       <span class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 font-mono text-[9px] font-medium tracking-[0.12em] text-ink truncate">
                         22.11 • <span class="recipient-upper">VANSHIKA</span>
-                      </span>
-                      <span class="sender-only px-2 py-1 rounded-full bg-black/75 border border-white/20 font-mono text-[9px] text-amberGlow group-hover:bg-amberGlow group-hover:text-obsidian transition shrink-0">
-                        + Photo
                       </span>
                     </div>
                   </div>
@@ -630,7 +613,7 @@
                   </button>
                 </div>
 
-                <!-- Neatly Integrated Card-Footer Status Hint (Keeps Bottom Viewport Clear) -->
+                <!-- Neatly Integrated Card-Footer Status Hint -->
                 <div class="pt-1 flex items-center justify-between font-mono text-[9.5px] tracking-[0.12em] text-mist/85">
                   <span class="flex items-center gap-1.5">
                     <span class="w-1.5 h-1.5 rounded-full bg-amberGlow animate-pulse"></span>
@@ -675,8 +658,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
               <!-- Left: Specular Glass Frame / Photo Slot #2 -->
               <div class="md:col-span-5">
-                <div onclick="handleSlotClick(2)"
-                  class="liquid-subpanel group relative h-24 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-amberGlow/45">
+                <div class="liquid-subpanel relative h-24 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-amberGlow/45">
                   <img id="slot-img-2" src="" alt="Cafe booth memory" class="hidden absolute inset-0 w-full h-full object-cover" />
 
                   <div id="slot-art-2" class="h-full flex flex-col justify-between relative">
@@ -707,10 +689,6 @@
                       <span class="recipient-upper text-amberGlow">VANSHIKA</span>
                     </div>
                   </div>
-
-                  <span class="sender-only absolute bottom-2.5 right-2.5 z-10 px-2.5 py-0.5 rounded-full bg-black/75 border border-white/20 font-mono text-[9.5px] text-mist group-hover:text-ink transition">
-                    + Photo 02
-                  </span>
                 </div>
               </div>
 
@@ -784,8 +762,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
               <!-- Left: Luminous Blue French Horn & Yellow Umbrella Plate / Photo Slot #3 -->
               <div class="md:col-span-5">
-                <div onclick="handleSlotClick(3)"
-                  class="liquid-subpanel group relative h-24 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-cobaltGlow/45">
+                <div class="liquid-subpanel relative h-24 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-cobaltGlow/45">
                   <img id="slot-img-3" src="" alt="MacLaren's booth memory" class="hidden absolute inset-0 w-full h-full object-cover" />
 
                   <div id="slot-art-3" class="h-full flex flex-col justify-between relative">
@@ -816,10 +793,6 @@
                       <span class="text-cobaltGlow">22.11</span>
                     </div>
                   </div>
-
-                  <span class="sender-only absolute bottom-2.5 right-2.5 z-10 px-2.5 py-0.5 rounded-full bg-black/75 border border-white/20 font-mono text-[9.5px] text-mist group-hover:text-ink transition">
-                    + Photo 03
-                  </span>
                 </div>
               </div>
 
@@ -1006,8 +979,7 @@
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
               <!-- Left: Luminous RB19 Telemetry HUD / Photo Slot #4 -->
               <div class="md:col-span-5">
-                <div onclick="handleSlotClick(4)"
-                  class="liquid-subpanel group relative h-28 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-roseCoral/45">
+                <div class="liquid-subpanel relative h-28 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-roseCoral/45">
                   <img id="slot-img-4" src="" alt="RB19 pit wall" class="hidden absolute inset-0 w-full h-full object-cover" />
 
                   <div id="slot-art-4" class="h-full flex flex-col justify-between font-mono relative">
@@ -1042,10 +1014,6 @@
                       <div class="py-1 rounded-md bg-amberGlow/20 text-amberGlow border border-amberGlow/40">S3 21.904s</div>
                     </div>
                   </div>
-
-                  <span class="sender-only absolute bottom-2.5 right-2.5 z-10 px-2.5 py-0.5 rounded-full bg-black/75 border border-white/20 font-mono text-[9.5px] text-mist group-hover:text-ink transition">
-                    + Photo 04
-                  </span>
                 </div>
               </div>
 
@@ -1150,7 +1118,7 @@
               </p>
             </div>
 
-            <!-- Card-Footer Controls (Keeps Bottom Viewport Completely Clear) -->
+            <!-- Card-Footer Controls -->
             <div class="w-full pt-2 border-t border-white/[0.12] flex items-center justify-between font-mono text-[10px] text-mist">
               <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
               <span class="text-amberGlow">VANSHIKA // 22.11</span>
@@ -1166,131 +1134,6 @@
     </main>
 
   </div>
-
-  <!-- =========================================================================
-       STUDIO DRAWER (CUSTOMIZE NAME, 4 PHOTOS, ORIGINAL SCENE CLIPS & NOTE)
-       ========================================================================= -->
-  <div id="studio-backdrop" onclick="closeStudioDrawer()"
-    class="fixed inset-0 z-40 hidden bg-black/70 backdrop-blur-xs transition-opacity"></div>
-
-  <aside id="studio-drawer"
-    class="fixed top-0 right-0 z-50 h-[100dvh] w-full max-w-md liquid-glass border-l border-white/15 shadow-2xl transform translate-x-full transition-transform duration-500 flex flex-col"
-    style="transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);">
-
-    <!-- Studio Header -->
-    <div class="h-[54px] px-5 border-b border-white/10 flex items-center justify-between shrink-0">
-      <div class="flex items-center gap-2">
-        <span class="w-2 h-2 rounded-full bg-amberGlow"></span>
-        <span class="font-mono text-xs tracking-[0.14em] text-ink">STUDIO // 22.11</span>
-      </div>
-      <button type="button" onclick="closeStudioDrawer()"
-        class="w-7 h-7 rounded-full bg-white/[0.06] hover:bg-white/[0.14] text-mist hover:text-ink flex items-center justify-center text-xs transition">
-        ✕
-      </button>
-    </div>
-
-    <!-- Studio Scrollable Controls -->
-    <div class="flex-1 overflow-y-auto p-5 space-y-6 select-text">
-
-      <!-- 1. Recipient Name -->
-      <div class="space-y-1.5">
-        <label for="studio-name-input" class="block font-mono text-[10px] tracking-wider uppercase text-mist">
-          Recipient Name
-        </label>
-        <input id="studio-name-input" type="text" value="Vanshika" oninput="handleNameChange(this.value)"
-          class="w-full px-3.5 py-2 rounded-xl bg-black/55 border border-white/15 text-xs sm:text-sm text-ink focus:outline-none focus:border-white/35" />
-      </div>
-
-      <!-- 2. Gallery Photo Slots (1–4) -->
-      <div class="space-y-2.5">
-        <div class="flex items-center justify-between">
-          <span class="font-mono text-[10px] tracking-wider uppercase text-mist">Photo Frames (assets/photo1–4.jpg)</span>
-          <span class="font-mono text-[9.5px] text-mist">Saved locally</span>
-        </div>
-
-        <div class="grid grid-cols-2 gap-2.5">
-          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
-            <div class="flex items-center justify-between font-mono text-[10px]">
-              <span class="text-ink">01. Portrait</span>
-              <button type="button" onclick="clearPhotoSlot(1)" class="text-mist hover:text-crimsonGlow">Clear</button>
-            </div>
-            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
-              Upload Photo
-              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 1)" class="hidden" />
-            </label>
-          </div>
-
-          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
-            <div class="flex items-center justify-between font-mono text-[10px]">
-              <span class="text-ink">02. Café Booth</span>
-              <button type="button" onclick="clearPhotoSlot(2)" class="text-mist hover:text-crimsonGlow">Clear</button>
-            </div>
-            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
-              Upload Photo
-              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 2)" class="hidden" />
-            </label>
-          </div>
-
-          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
-            <div class="flex items-center justify-between font-mono text-[10px]">
-              <span class="text-ink">03. MacLaren's</span>
-              <button type="button" onclick="clearPhotoSlot(3)" class="text-mist hover:text-crimsonGlow">Clear</button>
-            </div>
-            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
-              Upload Photo
-              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 3)" class="hidden" />
-            </label>
-          </div>
-
-          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
-            <div class="flex items-center justify-between font-mono text-[10px]">
-              <span class="text-ink">04. RB19 Grid</span>
-              <button type="button" onclick="clearPhotoSlot(4)" class="text-mist hover:text-crimsonGlow">Clear</button>
-            </div>
-            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
-              Upload Photo
-              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 4)" class="hidden" />
-            </label>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3. Original Scene Clip Uploaders (.mp3, .m4a, .wav, .mp4, .webm) -->
-      <div class="space-y-2.5">
-        <div>
-          <span class="block font-mono text-[10px] tracking-wider uppercase text-mist">
-            Original Scene Media Clips (assets/*.mp3)
-          </span>
-          <p class="text-[11px] text-mist mt-0.5 leading-snug">
-            On GitHub Pages, place your .mp3 files in <code class="text-amberGlow">assets/</code> using the exact filenames below, or attach files here to preview locally.
-          </p>
-        </div>
-
-        <div id="studio-clip-list" class="space-y-2"></div>
-      </div>
-
-      <!-- 4. Closing Note Editor -->
-      <div class="space-y-1.5">
-        <label for="studio-note-input" class="block font-mono text-[10px] tracking-wider uppercase text-mist">
-          Chapter 06 Closing Note
-        </label>
-        <textarea id="studio-note-input" rows="3" oninput="handleNoteChange(this.value)"
-          class="w-full px-3.5 py-2 rounded-xl bg-black/55 border border-white/15 text-xs text-ink leading-relaxed focus:outline-none focus:border-white/35"></textarea>
-      </div>
-    </div>
-
-    <!-- Studio Footer -->
-    <div class="px-5 py-3.5 border-t border-white/10 flex items-center justify-between shrink-0 bg-black/40">
-      <button type="button" onclick="toggleCleanView(); closeStudioDrawer();"
-        class="font-mono text-[11px] text-emeraldGlow hover:underline">
-        Switch to Clean View
-      </button>
-      <button type="button" onclick="closeStudioDrawer()"
-        class="px-5 py-1.5 rounded-full bg-ink text-obsidian font-sans text-xs font-semibold hover:bg-white transition">
-        Done
-      </button>
-    </div>
-  </aside>
 
   <!-- =========================================================================
        CLEAN, SINGLE-PASS APPLE-KEYNOTE ENGINE & CENTRALIZED MEDIA_CONFIG
@@ -1463,29 +1306,25 @@
         foley: 'f1'
       },
       '5-1': {
-    chapter: 5,
-    index: 1,
-    character: 'Max Verstappen',
-    actor: 'Max Verstappen',
-    meta: '2021 FRENCH GP • POLE LAP RADIO',
-    quote: '“Haha, yes! Ah, nice job guys! That’s an amazing weekend so far. Really proud of everyone. This was really enjoyable to drive, and on a track where in the past it was a bit more difficult, so really well done.”',
-    accent: 'amber',
-    foley: 'f1'
-  }
+        chapter: 5,
+        index: 1,
+        character: 'Max Verstappen',
+        actor: 'Max Verstappen',
+        meta: '2021 FRENCH GP • POLE LAP RADIO',
+        quote: '“Haha, yes! Ah, nice job guys! That’s an amazing weekend so far. Really proud of everyone. This was really enjoyable to drive, and on a track where in the past it was a bit more difficult, so really well done.”',
+        accent: 'amber',
+        foley: 'f1'
+      }
     };
 
     // =========================================================================
-    // 2. APPLICATION STATE & LOCAL STORAGE PERSISTENCE
+    // 2. APPLICATION STATE
     // =========================================================================
     const state = {
       currentChapter: 1,
       totalChapters: 6,
-      cleanView: false,
       recipientName: DEFAULT_RECIPIENT,
       closingNote: DEFAULT_CLOSING_NOTE,
-      photos: { 1: '', 2: '', 3: '', 4: '' },
-      pendingPhotoSlot: 1,
-      sceneClips: {},
       activeCueKey: null,
       activeChoiceBtn: null,
       islandExpanded: false,
@@ -1493,28 +1332,6 @@
       auditSigned: false,
       illuminated: false
     };
-
-    function loadSavedState() {
-      try {
-        const savedName = localStorage.getItem('v22_recipient_name');
-        const savedNote = localStorage.getItem('v22_closing_note');
-        const savedPhotos = localStorage.getItem('v22_photos');
-        if (savedName) state.recipientName = savedName;
-        if (savedNote) state.closingNote = savedNote;
-        if (savedPhotos) {
-          const parsed = JSON.parse(savedPhotos);
-          state.photos = { ...state.photos, ...parsed };
-        }
-      } catch (_) {}
-    }
-
-    function persistPhotos() {
-      try {
-        localStorage.setItem('v22_photos', JSON.stringify(state.photos));
-      } catch (_) {
-        showToast('Photo loaded for session');
-      }
-    }
 
     // =========================================================================
     // 3. CHAPTER AMBIENT LIGHTING, TOP PILLS & Z-AXIS OPTICAL BLUR NAVIGATION
@@ -1680,8 +1497,6 @@
     // 4. SAFE MEDIA ENGINE, TACTILE WEB AUDIO FOLEY & AUTO-ADVANCE TIMER
     // =========================================================================
     let audioCtx = null;
-    let analyser = null;
-    let mediaSourceNode = null;
     let waveAnimId = null;
     let foleyTimer = null;
     let autoAdvancePauseTimer = null;
@@ -1707,29 +1522,17 @@
       });
     }
 
-    function startHarmonicWave(useAnalyser) {
+    function startHarmonicWave() {
       cancelAnimationFrame(waveAnimId);
       const bars = document.querySelectorAll('#island-waveform .wave-bar');
       if (!bars.length) return;
-      const dataArray = useAnalyser && analyser ? new Uint8Array(analyser.frequencyBinCount) : null;
 
       function tick(now) {
-        if (useAnalyser && analyser && dataArray) {
-          try {
-            analyser.getByteFrequencyData(dataArray);
-            bars.forEach((bar, idx) => {
-              const val = dataArray[(idx * 2) % dataArray.length] || 0;
-              const h = Math.max(4, Math.min(20, 4 + (val / 255) * 16));
-              bar.style.height = `${h.toFixed(1)}px`;
-            });
-          } catch (_) {}
-        } else {
-          bars.forEach((bar, idx) => {
-            const wave = Math.sin(now * 0.011 + idx * 1.15) * 0.5 + 0.5;
-            const h = 5 + wave * 13;
-            bar.style.height = `${h.toFixed(1)}px`;
-          });
-        }
+        bars.forEach((bar, idx) => {
+          const wave = Math.sin(now * 0.011 + idx * 1.15) * 0.5 + 0.5;
+          const h = 5 + wave * 13;
+          bar.style.height = `${h.toFixed(1)}px`;
+        });
         waveAnimId = requestAnimationFrame(tick);
       }
       waveAnimId = requestAnimationFrame(tick);
@@ -1817,20 +1620,12 @@
     function stopAllMedia() {
       try {
         const audioEl = document.getElementById('scene-audio-player');
-        const videoEl = document.getElementById('scene-video-player');
-        const waveEl = document.getElementById('island-waveform');
         if (audioEl) {
           audioEl.onerror = null;
           audioEl.onended = null;
           audioEl.pause();
           audioEl.currentTime = 0;
         }
-        if (videoEl) {
-          videoEl.pause();
-          videoEl.currentTime = 0;
-          videoEl.classList.add('hidden');
-        }
-        if (waveEl) waveEl.classList.remove('hidden');
       } catch (_) {}
       clearTimeout(foleyTimer);
       cancelAnimationFrame(waveAnimId);
@@ -1900,7 +1695,7 @@
             : `TACTILE FOLEY // ${url.replace('assets/', '').toUpperCase()}`;
         }
         playTactileFoley(fallbackFoley);
-        startHarmonicWave(false);
+        startHarmonicWave();
         foleyTimer = setTimeout(() => {
           cancelAnimationFrame(waveAnimId);
           resetWaveBars();
@@ -1943,7 +1738,7 @@
           playPromise
             .then(() => {
               if (badgeEl) badgeEl.textContent = activeLabel;
-              startHarmonicWave(false);
+              startHarmonicWave();
               cancelAnimationFrame(progressRafId);
               progressRafId = requestAnimationFrame(syncAudioProgress);
             })
@@ -1996,42 +1791,9 @@
         setCardHints('PLAYING SCENE • AUTO-ADVANCING...');
       }
 
-      const attached = state.sceneClips[cueKey];
       const staticAssetUrl = MEDIA_CONFIG.audio[cueKey];
 
-      if (attached && attached.url) {
-        if (sourceBadge) sourceBadge.textContent = `STUDIO CLIP // ${attached.fileName.toUpperCase()}`;
-        if (attached.isVideo) {
-          const videoEl = document.getElementById('scene-video-player');
-          const waveEl = document.getElementById('island-waveform');
-          if (waveEl) waveEl.classList.add('hidden');
-          if (videoEl) {
-            videoEl.src = attached.url;
-            videoEl.classList.remove('hidden');
-            videoEl.ontimeupdate = () => {
-              if (videoEl.duration) setPlaybackProgress((videoEl.currentTime / videoEl.duration) * 100);
-            };
-            videoEl.play().catch(() => {
-              if (autoAdvance) runTimedProgressAndAdvance(3600, cue.chapter);
-            });
-            videoEl.onended = () => {
-              setPlaybackProgress(100);
-              videoEl.classList.add('hidden');
-              if (waveEl) waveEl.classList.remove('hidden');
-              resetWaveBars();
-              if (autoAdvance) scheduleAutoAdvanceToNext(cue.chapter);
-            };
-          }
-        } else {
-          playAudioSource(
-            attached.url,
-            cue.foley,
-            sourceBadge,
-            `STUDIO CLIP // ${attached.fileName.toUpperCase()}`,
-            autoAdvance ? cue.chapter : null
-          );
-        }
-      } else if (staticAssetUrl) {
+      if (staticAssetUrl) {
         playAudioSource(
           staticAssetUrl,
           cue.foley,
@@ -2042,7 +1804,7 @@
       } else {
         if (sourceBadge) sourceBadge.textContent = 'SCENE CUE • AUTO-ADVANCING';
         playTactileFoley(cue.foley);
-        startHarmonicWave(false);
+        startHarmonicWave();
         foleyTimer = setTimeout(() => {
           cancelAnimationFrame(waveAnimId);
           resetWaveBars();
@@ -2190,7 +1952,7 @@
       }
     }
 
-    // Chapter 06: Apple Slide-to-Illuminate "22" Light Bar
+    // Chapter 06: Butter-Smooth Apple Slide-to-Illuminate "22" Light Bar
     function initLightBarSlider() {
       const track = document.getElementById('light-slider-track');
       const thumb = document.getElementById('light-slider-thumb');
@@ -2199,25 +1961,40 @@
       if (!track || !thumb || !fill || !label) return;
 
       let dragging = false;
-      let startX = 0;
+      let activePointerId = null;
+      let grabOffsetX = 0;
+      let startClientX = 0;
       let currentOffset = 0;
 
-      function getMaxOffset() {
-        return Math.max(10, track.clientWidth - thumb.clientWidth - 8);
+      function getTrackMetrics() {
+        const trackRect = track.getBoundingClientRect();
+        const thumbWidth = thumb.offsetWidth || 40;
+        const maxOffset = Math.max(10, trackRect.width - thumbWidth - 8);
+        return { trackRect, thumbWidth, maxOffset };
       }
 
       function applySliderOffset(px) {
-        const max = getMaxOffset();
-        const clamped = Math.max(0, Math.min(max, px));
+        const { thumbWidth, maxOffset } = getTrackMetrics();
+        const clamped = Math.max(0, Math.min(maxOffset, px));
         currentOffset = clamped;
-        thumb.style.transform = `translateX(${clamped}px)`;
-        fill.style.width = `${clamped + thumb.clientWidth + 4}px`;
-        label.style.opacity = `${Math.max(0, 1 - (clamped / max) * 1.4)}`;
+        thumb.style.transform = `translate3d(${clamped.toFixed(1)}px, 0, 0)`;
+        fill.style.width = `${(clamped + thumbWidth + 4).toFixed(1)}px`;
+        label.style.opacity = `${Math.max(0, 1 - (clamped / maxOffset) * 1.35).toFixed(3)}`;
+        return { clamped, maxOffset };
       }
 
       function igniteTwentyTwo() {
+        if (state.illuminated) return;
         state.illuminated = true;
-        applySliderOffset(getMaxOffset());
+        dragging = false;
+        activePointerId = null;
+
+        thumb.style.transition = 'transform 0.42s cubic-bezier(0.22, 1, 0.36, 1)';
+        fill.style.transition = 'width 0.42s cubic-bezier(0.22, 1, 0.36, 1)';
+        label.style.transition = 'opacity 0.3s ease';
+
+        const { maxOffset } = getTrackMetrics();
+        applySliderOffset(maxOffset);
         document.body.classList.add('is-illuminated');
 
         const statusTag = document.getElementById('signoff-status-tag');
@@ -2234,40 +2011,70 @@
         launchGoldenBokeh();
       }
 
-      thumb.addEventListener('pointerdown', e => {
+      function startDrag(e) {
+        if (state.illuminated) return;
+        if (e.button !== undefined && e.button !== 0) return;
+
         dragging = true;
-        startX = e.clientX - currentOffset;
-        try {
-          thumb.setPointerCapture(e.pointerId);
-        } catch (_) {}
+        activePointerId = e.pointerId;
+        startClientX = e.clientX;
+
+        const { trackRect, thumbWidth } = getTrackMetrics();
+        const thumbRect = thumb.getBoundingClientRect();
+
         thumb.style.transition = 'none';
         fill.style.transition = 'none';
-      });
+        label.style.transition = 'none';
 
-      thumb.addEventListener('pointermove', e => {
-        if (!dragging) return;
-        applySliderOffset(e.clientX - startX);
-      });
+        if (e.target === thumb || thumb.contains(e.target)) {
+          grabOffsetX = e.clientX - thumbRect.left;
+        } else {
+          grabOffsetX = thumbWidth / 2;
+          const initialPx = e.clientX - trackRect.left - 4 - grabOffsetX;
+          applySliderOffset(initialPx);
+        }
+      }
 
-      thumb.addEventListener('pointerup', () => {
+      function onMove(e) {
+        if (!dragging || state.illuminated) return;
+        if (activePointerId !== null && e.pointerId !== activePointerId) return;
+
+        const { trackRect } = getTrackMetrics();
+        const nextPx = e.clientX - trackRect.left - 4 - grabOffsetX;
+        const { clamped, maxOffset } = applySliderOffset(nextPx);
+
+        if (clamped >= maxOffset * 0.94) {
+          igniteTwentyTwo();
+        }
+      }
+
+      function endDrag(e) {
         if (!dragging) return;
+        if (activePointerId !== null && e.pointerId !== undefined && e.pointerId !== activePointerId) return;
+
         dragging = false;
+        activePointerId = null;
+
+        if (state.illuminated) return;
+
+        const { maxOffset } = getTrackMetrics();
+        const movedDistance = Math.abs((e.clientX ?? startClientX) - startClientX);
+
         thumb.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
         fill.style.transition = 'width 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
+        label.style.transition = 'opacity 0.35s ease';
 
-        if (currentOffset >= getMaxOffset() * 0.72) {
+        if (currentOffset >= maxOffset * 0.60 || movedDistance < 6) {
           igniteTwentyTwo();
-        } else if (!state.illuminated) {
+        } else {
           applySliderOffset(0);
         }
-      });
+      }
 
-      track.addEventListener('click', e => {
-        if (e.target === thumb) return;
-        thumb.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
-        fill.style.transition = 'width 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
-        igniteTwentyTwo();
-      });
+      track.addEventListener('pointerdown', startDrag);
+      window.addEventListener('pointermove', onMove, { passive: true });
+      window.addEventListener('pointerup', endDrag);
+      window.addEventListener('pointercancel', endDrag);
     }
 
     function resetExperience() {
@@ -2313,7 +2120,7 @@
       if (statusTag) statusTag.textContent = 'READY TO ILLUMINATE';
       if (glowEl) glowEl.style.opacity = '0.35';
       if (noteWrap) noteWrap.classList.add('opacity-90');
-      if (thumb) thumb.style.transform = 'translateX(0px)';
+      if (thumb) thumb.style.transform = 'translate3d(0px, 0, 0)';
       if (fill) fill.style.width = '48px';
       if (sLabel) sLabel.style.opacity = '1';
 
@@ -2321,111 +2128,14 @@
     }
 
     // =========================================================================
-    // 6. STUDIO DRAWER, 4 PHOTO SLOTS, ORIGINAL SCENE CLIPS & CLEAN VIEW
+    // 6. STATIC PHOTO LOADER (assets/photo1–4.jpg)
     // =========================================================================
-    function openStudioDrawer() {
-      cancelAutoAdvance();
-      const backdrop = document.getElementById('studio-backdrop');
-      const drawer = document.getElementById('studio-drawer');
-      if (backdrop) backdrop.classList.remove('hidden');
-      if (drawer) drawer.classList.remove('translate-x-full');
-    }
-
-    function closeStudioDrawer() {
-      const backdrop = document.getElementById('studio-backdrop');
-      const drawer = document.getElementById('studio-drawer');
-      if (backdrop) backdrop.classList.add('hidden');
-      if (drawer) drawer.classList.add('translate-x-full');
-    }
-
-    function toggleCleanView() {
-      state.cleanView = !state.cleanView;
-      document.body.classList.toggle('clean-view', state.cleanView);
-      const btn = document.getElementById('clean-view-btn');
-      const label = document.getElementById('clean-view-label');
-
-      if (state.cleanView) {
-        if (btn) btn.classList.add('bg-white/15', 'text-ink');
-        if (label) label.textContent = 'Clean View: ON';
-        showToast('Clean View active');
-      } else {
-        if (btn) btn.classList.remove('bg-white/15', 'text-ink');
-        if (label) label.textContent = 'Clean View';
-        showToast('Studio controls visible');
-      }
-    }
-
-    function handleNameChange(raw) {
-      state.recipientName = raw.trim() || DEFAULT_RECIPIENT;
-      const upper = state.recipientName.toUpperCase();
-      const brandEl = document.getElementById('island-brand');
-      const heroWord = document.getElementById('hero-recipient-word');
-      if (brandEl) brandEl.textContent = `${upper} // 22.11`;
-      if (heroWord) heroWord.textContent = `${state.recipientName}.`;
-      document.querySelectorAll('.recipient-upper').forEach(el => {
-        el.textContent = upper;
-      });
-      try {
-        localStorage.setItem('v22_recipient_name', state.recipientName);
-      } catch (_) {}
-    }
-
-    function handleNoteChange(val) {
-      state.closingNote = val;
-      const noteEl = document.getElementById('closing-note-display');
-      if (noteEl) noteEl.textContent = val;
-      try {
-        localStorage.setItem('v22_closing_note', val);
-      } catch (_) {}
-    }
-
-    function handleSlotClick(slotNum) {
-      if (state.cleanView) return;
-      state.pendingPhotoSlot = slotNum;
-      const picker = document.getElementById('direct-photo-picker');
-      if (picker) {
-        picker.value = '';
-        picker.click();
-      }
-    }
-
-    const directPhotoPicker = document.getElementById('direct-photo-picker');
-    if (directPhotoPicker) {
-      directPhotoPicker.addEventListener('change', e => {
-        const file = e.target.files && e.target.files[0];
-        if (file) processPhotoFile(file, state.pendingPhotoSlot);
-      });
-    }
-
-    function handleStudioPhotoUpload(e, slotNum) {
-      const file = e.target.files && e.target.files[0];
-      if (file) processPhotoFile(file, slotNum);
-    }
-
-    function processPhotoFile(file, slotNum) {
-      const reader = new FileReader();
-      reader.onload = ev => {
-        state.photos[slotNum] = ev.target.result;
-        renderPhotoSlot(slotNum);
-        persistPhotos();
-        showToast(`Frame 0${slotNum} updated`);
-      };
-      reader.readAsDataURL(file);
-    }
-
-    function clearPhotoSlot(slotNum) {
-      state.photos[slotNum] = '';
-      renderPhotoSlot(slotNum);
-      persistPhotos();
-      showToast(`Frame 0${slotNum} cleared`);
-    }
-
     function renderPhotoSlot(slotNum) {
       const img = document.getElementById(`slot-img-${slotNum}`);
       const art = document.getElementById(`slot-art-${slotNum}`);
       if (!img || !art) return;
 
-      const candidateSrc = state.photos[slotNum] || MEDIA_CONFIG.photos[`photo${slotNum}`];
+      const candidateSrc = MEDIA_CONFIG.photos[`photo${slotNum}`];
 
       if (candidateSrc) {
         img.onload = () => {
@@ -2442,61 +2152,6 @@
         img.classList.add('hidden');
         art.classList.remove('hidden');
       }
-    }
-
-    function buildStudioClipList() {
-      const container = document.getElementById('studio-clip-list');
-      if (!container) return;
-      container.innerHTML = '';
-
-      Object.entries(SCENE_CUES).forEach(([key, cue]) => {
-        const attached = state.sceneClips[key];
-        const expectedPath = MEDIA_CONFIG.audio[key] || '';
-        const row = document.createElement('div');
-        row.className = 'p-2.5 rounded-xl bg-black/45 border border-white/10 flex items-center justify-between gap-2';
-        row.innerHTML = `
-          <div class="min-w-0">
-            <span class="block font-sans text-xs font-medium text-ink truncate">
-              Ch 0${cue.chapter} • ${cue.character}
-            </span>
-            <span class="block font-mono text-[9.5px] text-amberGlow/90 truncate">
-              ${attached ? attached.fileName : expectedPath}
-            </span>
-          </div>
-          <div class="flex items-center gap-1.5 shrink-0">
-            <button type="button" onclick="expandDynamicIsland('${key}', false)" title="Preview cue"
-              class="px-2 py-1 rounded-lg bg-white/[0.06] hover:bg-white/[0.14] font-mono text-[10px] text-ink transition">
-              ▶
-            </button>
-            <label class="px-2.5 py-1 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] font-mono text-[10px] text-amberGlow cursor-pointer transition">
-              ${attached ? 'Replace' : 'Preview File'}
-              <input type="file" accept="audio/*,video/*" onchange="attachSceneClip(event, '${key}')" class="hidden" />
-            </label>
-          </div>
-        `;
-        container.appendChild(row);
-      });
-    }
-
-    function attachSceneClip(e, cueKey) {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-
-      if (state.sceneClips[cueKey] && state.sceneClips[cueKey].url) {
-        URL.revokeObjectURL(state.sceneClips[cueKey].url);
-      }
-
-      const objectUrl = URL.createObjectURL(file);
-      const isVideo = file.type.startsWith('video/');
-      state.sceneClips[cueKey] = {
-        url: objectUrl,
-        isVideo,
-        fileName: file.name
-      };
-
-      buildStudioClipList();
-      showToast(`Attached clip to ${SCENE_CUES[cueKey].character}`);
-      expandDynamicIsland(cueKey, false);
     }
 
     // =========================================================================
@@ -2617,23 +2272,9 @@
     }
 
     // =========================================================================
-    // 9. TOAST HELPER & KEYBOARD SHORTCUTS
+    // 9. KEYBOARD SHORTCUTS & INITIALIZATION
     // =========================================================================
-    let toastTimeout = null;
-    function showToast(msg) {
-      const toast = document.getElementById('apple-toast');
-      const textEl = document.getElementById('apple-toast-text');
-      if (!toast || !textEl) return;
-      textEl.textContent = msg;
-      toast.classList.remove('opacity-0', '-translate-y-2');
-      clearTimeout(toastTimeout);
-      toastTimeout = setTimeout(() => {
-        toast.classList.add('opacity-0', '-translate-y-2');
-      }, 2100);
-    }
-
     document.addEventListener('keydown', e => {
-      if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
       if (e.key === 'ArrowRight' && state.currentChapter < state.totalChapters) {
         navigateChapter(1);
       } else if (e.key === 'ArrowLeft' && state.currentChapter > 1) {
@@ -2641,21 +2282,8 @@
       }
     });
 
-    // =========================================================================
-    // 10. INITIALIZATION
-    // =========================================================================
     window.addEventListener('DOMContentLoaded', () => {
-      loadSavedState();
-
-      const nameInput = document.getElementById('studio-name-input');
-      const noteInput = document.getElementById('studio-note-input');
-      if (nameInput) nameInput.value = state.recipientName;
-      if (noteInput) noteInput.value = state.closingNote;
-      handleNameChange(state.recipientName);
-      handleNoteChange(state.closingNote);
-
       [1, 2, 3, 4].forEach(slot => renderPhotoSlot(slot));
-      buildStudioClipList();
       renderProgressIndicators();
       initLightBarSlider();
       requestAnimationFrame(runParallaxLoop);
