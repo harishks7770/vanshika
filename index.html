@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>VANSHIKA // 22.11</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans, Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"Plus Jakarta Sans"', '"Inter"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            obsidian: '#090717',
+            ink: '#F8FAFC',
+            mist: '#CBD5E1',
+            amberGlow: '#FFB800',
+            roseCoral: '#FF3B6B',
+            cobaltGlow: '#38BDF8',
+            amethystGlow: '#A855F7',
+            emeraldGlow: '#10B981',
+            crimsonGlow: '#FF3B6B',
+            goldGlow: '#FFB800',
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    /* =========================================================================
+       1. STRICT 100dvh x 100vw VIEWPORT LOCK & APPLE TYPOGRAPHIC FOUNDATION
+       ========================================================================= */
+    :root {
+      --spring-apple: cubic-bezier(0.22, 1, 0.36, 1);
+      --spring-island: cubic-bezier(0.32, 0.72, 0, 1);
+      --tilt-x: 0deg;
+      --tilt-y: 0deg;
+      --sheen-x: 50%;
+      --sheen-y: 35%;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100dvh;
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 18% 15%, rgba(168, 85, 247, 0.24), transparent 44%),
+        radial-gradient(circle at 84% 20%, rgba(255, 59, 107, 0.22), transparent 46%),
+        radial-gradient(circle at 52% 88%, rgba(255, 184, 0, 0.20), transparent 50%),
+        #090717;
+      color: #F8FAFC;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Plus Jakarta Sans", "Inter", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .display-tracking {
+      letter-spacing: -0.042em;
+    }
+
+    .birthday-gradient-text {
+      background: linear-gradient(125deg, #FFFFFF 0%, #FFE49E 38%, #FF8FAB 74%, #A5F3FC 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Ultra-Fine Procedural Film Grain Overlay */
+    .film-grain {
+      position: fixed;
+      inset: 0;
+      z-index: 45;
+      pointer-events: none;
+      opacity: 0.022;
+      mix-blend-mode: overlay;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)'/%3E%3C/svg%3E");
+    }
+
+    /* =========================================================================
+       2. AMBIENT VOLUMETRIC AURORA LIGHT ORBS (BREATHING & CHAPTER-REACTIVE)
+       ========================================================================= */
+    @keyframes auroraPulse {
+      0%, 100% { opacity: 0.62; scale: 1; }
+      50% { opacity: 0.86; scale: 1.07; }
+    }
+
+    .ambient-orb {
+      position: fixed;
+      border-radius: 9999px;
+      pointer-events: none;
+      filter: blur(95px);
+      animation: auroraPulse 7.5s ease-in-out infinite;
+      will-change: transform, background, opacity;
+      transition:
+        transform 1.25s var(--spring-apple),
+        background 1.25s var(--spring-apple),
+        opacity 1.25s var(--spring-apple);
+    }
+
+    /* =========================================================================
+       3. APPLE LIQUID GLASS MATERIAL & INERTIAL 3D PARALLAX STAGE
+       ========================================================================= */
+    .perspective-viewport {
+      perspective: 1400px;
+      transform-style: preserve-3d;
+    }
+
+    .liquid-glass {
+      background: linear-gradient(145deg, rgba(28, 22, 58, 0.64) 0%, rgba(16, 13, 38, 0.58) 100%);
+      backdrop-filter: blur(44px) saturate(210%);
+      -webkit-backdrop-filter: blur(44px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-top-color: rgba(255, 255, 255, 0.34);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 0 rgba(255, 184, 0, 0.12),
+        0 30px 80px rgba(4, 3, 15, 0.78);
+    }
+
+    .liquid-subpanel {
+      background: linear-gradient(155deg, rgba(32, 25, 68, 0.60) 0%, rgba(15, 12, 36, 0.70) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-top-color: rgba(255, 255, 255, 0.28);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.22),
+        0 16px 36px -12px rgba(4, 3, 15, 0.65);
+    }
+
+    /* Slide 01 Dedicated Apple Liquid Glass Portrait Frame */
+    .hero-portrait-frame {
+      background: linear-gradient(160deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 184, 0, 0.08) 45%, rgba(168, 85, 247, 0.14) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.24);
+      border-top-color: rgba(255, 255, 255, 0.45);
+      box-shadow:
+        inset 0 1px 1px rgba(255, 255, 255, 0.35),
+        inset 0 -12px 28px rgba(9, 7, 23, 0.45),
+        0 24px 48px -14px rgba(168, 85, 247, 0.36),
+        0 14px 32px -12px rgba(255, 59, 107, 0.28);
+    }
+
+    /* Inertial 3D Parallax Wrapper */
+    #tilt-rig {
+      transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.12s linear;
+    }
+
+    /* Directional Specular Reflection Layer */
+    .specular-sheen {
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      pointer-events: none;
+      background: radial-gradient(
+        520px circle at var(--sheen-x) var(--sheen-y),
+        rgba(255, 255, 255, 0.08),
+        transparent 55%
+      );
+      z-index: 2;
+    }
+
+    /* =========================================================================
+       4. Z-AXIS DEPTH + OPTICAL BLUR CHAPTER TRANSITIONS & MASKED TEXT REVEAL
+       ========================================================================= */
+    .chapter-view {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(1.06) translateZ(24px);
+      filter: blur(14px);
+      transition:
+        opacity 0.62s var(--spring-apple),
+        transform 0.68s var(--spring-apple),
+        filter 0.62s var(--spring-apple);
+      will-change: opacity, transform, filter;
+    }
+
+    .chapter-view.is-active {
+      position: relative;
+      opacity: 1;
+      pointer-events: auto;
+      transform: scale(1) translateZ(0px);
+      filter: blur(0px);
+    }
+
+    .chapter-view.is-exiting {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transform: scale(0.92) translateZ(-40px);
+      filter: blur(16px);
+    }
+
+    /* Apple Keynote Line/Word Vertical Mask Reveal */
+    .word-mask {
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: bottom;
+      padding-bottom: 0.08em;
+      margin-bottom: -0.08em;
+    }
+
+    .word-inner {
+      display: inline-block;
+      transform: translateY(115%);
+      opacity: 0;
+      transition:
+        transform 0.72s var(--spring-apple),
+        opacity 0.52s var(--spring-apple);
+      transition-delay: var(--d, 0ms);
+    }
+
+    .chapter-view.is-active .word-inner {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+
+    /* =========================================================================
+       5. MORPHING APPLE DYNAMIC ISLAND HEADER
+       ========================================================================= */
+    .dynamic-island {
+      background: rgba(12, 10, 28, 0.88);
+      backdrop-filter: blur(44px) saturate(210%);
+      -webkit-backdrop-filter: blur(44px) saturate(210%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top-color: rgba(255, 255, 255, 0.32);
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.24),
+        0 20px 50px rgba(4, 3, 15, 0.82);
+      transition:
+        width 0.56s var(--spring-island),
+        max-width 0.56s var(--spring-island),
+        border-radius 0.56s var(--spring-island),
+        padding 0.45s var(--spring-island),
+        border-color 0.35s ease;
+    }
+
+    /* Live Harmonic Waveform Bars */
+    .wave-bar {
+      width: 2.5px;
+      border-radius: 9999px;
+      transform-origin: center;
+      transition: height 0.12s ease, background-color 0.3s ease;
+    }
+
+    /* =========================================================================
+       6. TACTILE CHOICE PILLS & INTERACTIVE CONTROLS
+       ========================================================================= */
+    .apple-choice {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.055);
+      border: 1px solid rgba(255, 255, 255, 0.13);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      transition:
+        transform 0.28s var(--spring-apple),
+        background-color 0.28s var(--spring-apple),
+        border-color 0.28s var(--spring-apple),
+        box-shadow 0.28s var(--spring-apple);
+    }
+
+    .choice-progress-fill {
+      position: absolute;
+      inset: 0;
+      width: 0%;
+      pointer-events: none;
+      background: linear-gradient(90deg, rgba(255, 184, 0, 0.24), rgba(168, 85, 247, 0.22), rgba(255, 59, 107, 0.24));
+      z-index: 0;
+    }
+
+    .apple-choice:hover {
+      background: rgba(255, 255, 255, 0.11);
+      border-color: rgba(255, 255, 255, 0.28);
+      transform: translateY(-1px);
+    }
+
+    .apple-choice:active {
+      transform: scale(0.985);
+    }
+
+    .apple-choice.active-amber {
+      background: linear-gradient(135deg, rgba(255, 184, 0, 0.22), rgba(255, 59, 107, 0.14));
+      border-color: rgba(255, 184, 0, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 26px -8px rgba(255, 184, 0, 0.42);
+    }
+
+    .apple-choice.active-cobalt {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(168, 85, 247, 0.16));
+      border-color: rgba(56, 189, 248, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 26px -8px rgba(56, 189, 248, 0.42);
+    }
+
+    .apple-choice.active-crimson {
+      background: linear-gradient(135deg, rgba(255, 59, 107, 0.22), rgba(255, 184, 0, 0.14));
+      border-color: rgba(255, 59, 107, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 26px -8px rgba(255, 59, 107, 0.42);
+    }
+
+    .apple-choice.active-emerald {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.22), rgba(56, 189, 248, 0.14));
+      border-color: rgba(16, 185, 129, 0.72);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 10px 26px -8px rgba(16, 185, 129, 0.42);
+    }
+
+    /* Emerald Audit Stamp Animation */
+    @keyframes stampDrop {
+      0% {
+        opacity: 0;
+        transform: scale(1.45) rotate(-8deg);
+      }
+      65% {
+        opacity: 1;
+        transform: scale(0.96) rotate(-2deg);
+      }
+      100% {
+        opacity: 1;
+        transform: scale(1) rotate(-3deg);
+      }
+    }
+
+    .audit-stamp-anim {
+      animation: stampDrop 0.45s var(--spring-apple) forwards;
+    }
+
+    /* Golden-Hour Illumination Aura for Chapter 06 */
+    .golden-horizon {
+      opacity: 0;
+      transition: opacity 1.1s var(--spring-apple);
+    }
+    body.is-illuminated .golden-horizon {
+      opacity: 1;
+    }
+
+    /* Clean View Mode: Hides all sender controls & studio hints */
+    body.clean-view .sender-only {
+      display: none !important;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Film Grain & Canvas Bokeh Particles -->
+  <div class="film-grain" aria-hidden="true"></div>
+  <canvas id="bokeh-canvas" class="fixed inset-0 z-30 pointer-events-none w-full h-full"></canvas>
+
+  <!-- Hidden Audio & File Picker Elements -->
+  <audio id="scene-audio-player" preload="none" class="hidden"></audio>
+  <input type="file" id="direct-photo-picker" accept="image/*" class="hidden" />
+
+  <!-- =========================================================================
+       AMBIENT VOLUMETRIC AURORA LIGHT ORBS (DYNAMICALLY SHIFT PER CHAPTER)
+       ========================================================================= -->
+  <div id="orb-primary" class="ambient-orb w-[380px] h-[380px] sm:w-[580px] sm:h-[580px] -top-24 -left-16 opacity-70"
+    style="background: radial-gradient(circle, rgba(255, 184, 0, 0.42), rgba(255, 59, 107, 0.18) 55%, transparent 72%);"></div>
+
+  <div id="orb-secondary" class="ambient-orb w-[360px] h-[360px] sm:w-[540px] sm:h-[540px] -bottom-24 -right-12 opacity-65"
+    style="background: radial-gradient(circle, rgba(168, 85, 247, 0.40), rgba(56, 189, 248, 0.18) 55%, transparent 72%);"></div>
+
+  <div id="orb-tertiary" class="ambient-orb w-[280px] h-[280px] sm:w-[420px] sm:h-[420px] top-1/3 left-1/2 -translate-x-1/2 opacity-45"
+    style="background: radial-gradient(circle, rgba(255, 59, 107, 0.28), transparent 70%);"></div>
+
+  <!-- Golden-Hour & Rose Illumination Layer (Activated on Slide 06 Light Bar) -->
+  <div class="golden-horizon fixed inset-0 pointer-events-none z-0"
+    style="background: radial-gradient(ellipse 85% 70% at 50% 42%, rgba(255, 184, 0, 0.30), rgba(255, 59, 107, 0.16) 46%, transparent 78%);"></div>
+
+  <!-- Subtle Floating Notification Pill -->
+  <div id="apple-toast" class="fixed top-16 right-4 sm:right-6 z-50 pointer-events-none opacity-0 -translate-y-2 transition-all duration-300">
+    <div class="px-3.5 py-1.5 rounded-full liquid-glass font-mono text-[11px] text-ink">
+      <span id="apple-toast-text">Updated</span>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       MAIN VIEWPORT SHELL (100dvh x 100vw, ZERO SCROLL, CLEAR BOTTOM EDGE)
+       ========================================================================= -->
+  <div class="relative z-10 w-screen h-[100dvh] flex flex-col justify-between overflow-hidden">
+
+    <!-- 1. TOP HEADER BAR: 6 PROGRESS PILLS (LEFT) + DYNAMIC ISLAND (CENTER) + STUDIO/CLEAN VIEW (RIGHT) -->
+    <header class="relative z-30 pt-2.5 sm:pt-3.5 px-3.5 sm:px-6 flex items-start justify-between gap-2 shrink-0 min-h-[52px]">
+
+      <!-- Left: 6 Interactive Progress Pills + Chapter Telemetry -->
+      <div class="hidden sm:flex items-center gap-2.5 pt-2 shrink-0">
+        <div id="top-progress-pills" class="flex items-center gap-1.5" aria-label="Chapter progress"></div>
+        <span id="top-chapter-code" class="font-mono text-[10.5px] tracking-[0.14em] text-mist">01 / 06</span>
+      </div>
+
+      <!-- Center: Morphing Apple Dynamic Island Pill -->
+      <div class="flex-1 flex justify-center min-w-0">
+        <div id="dynamic-island"
+          class="dynamic-island relative w-[240px] sm:w-[300px] max-w-[92vw] rounded-[24px] px-3.5 py-2 overflow-hidden">
+
+          <!-- Compact Idle State -->
+          <div id="island-compact" class="flex items-center justify-between gap-2.5">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="w-1.5 h-1.5 rounded-full bg-amberGlow shrink-0"></span>
+              <span id="island-brand" class="font-mono text-[11px] font-medium tracking-[0.12em] text-ink truncate">
+                VANSHIKA // 22.11
+              </span>
+            </div>
+
+            <!-- Mobile Compact Chapter Dots -->
+            <div id="island-mobile-dots" class="flex sm:hidden items-center gap-1 shrink-0"></div>
+            <span class="hidden sm:inline font-mono text-[9.5px] text-amberGlow shrink-0">NOV 22</span>
+          </div>
+
+          <!-- Expanded Live Now-Playing Cinema Widget -->
+          <div id="island-expanded" class="hidden flex-col gap-2 pt-0.5 pb-1">
+            <div class="flex items-center justify-between gap-2.5">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <div id="island-media-box"
+                  class="w-10 h-9 rounded-xl bg-white/[0.06] border border-white/[0.14] flex items-center justify-center shrink-0 overflow-hidden relative">
+                  <video id="scene-video-player" playsinline class="hidden w-full h-full object-cover"></video>
+                  <!-- 7-Bar Harmonic Audio Visualizer -->
+                  <div id="island-waveform" class="flex items-center justify-center gap-[2px] h-5">
+                    <span class="wave-bar h-1.5 bg-amberGlow"></span>
+                    <span class="wave-bar h-3 bg-roseCoral"></span>
+                    <span class="wave-bar h-2 bg-amethystGlow"></span>
+                    <span class="wave-bar h-4 bg-amberGlow"></span>
+                    <span class="wave-bar h-2.5 bg-cobaltGlow"></span>
+                    <span class="wave-bar h-3.5 bg-roseCoral"></span>
+                    <span class="wave-bar h-1.5 bg-amberGlow"></span>
+                  </div>
+                </div>
+
+                <!-- Character, Actor & Episode/Race Metadata -->
+                <div class="min-w-0">
+                  <div class="flex items-center gap-1.5">
+                    <span id="island-character" class="font-sans text-xs font-semibold text-ink truncate">
+                      Luke Danes
+                    </span>
+                    <span id="island-actor" class="font-mono text-[10px] text-mist truncate">
+                      • Scott Patterson
+                    </span>
+                  </div>
+                  <p id="island-meta" class="font-mono text-[9.5px] tracking-wider text-amberGlow uppercase truncate">
+                    GILMORE GIRLS • S01E01
+                  </p>
+                </div>
+              </div>
+
+              <!-- Replay & Collapse Controls -->
+              <div class="flex items-center gap-1 shrink-0">
+                <button type="button" onclick="replayActiveScene()" title="Replay scene cue"
+                  class="w-7 h-7 rounded-full bg-white/[0.08] hover:bg-white/[0.16] text-ink flex items-center justify-center text-xs transition active:scale-90">
+                  ↻
+                </button>
+                <button type="button" onclick="collapseDynamicIsland()" title="Minimize"
+                  class="w-7 h-7 rounded-full bg-white/[0.06] hover:bg-white/[0.14] text-mist hover:text-ink flex items-center justify-center text-[11px] transition active:scale-90">
+                  ✕
+                </button>
+              </div>
+            </div>
+
+            <!-- Verbatim Iconic Scene Quote -->
+            <p id="island-quote" class="text-xs sm:text-[13px] font-medium text-ink/95 leading-snug">
+              “Coffee, coffee, coffee. Happy birthday—now take a breath before the day starts.”
+            </p>
+
+            <!-- Source Status Footer -->
+            <div class="flex items-center justify-between gap-2 pt-1 border-t border-white/[0.12] font-mono text-[9.5px]">
+              <span id="island-source-badge" class="text-mist truncate">
+                AUTO-ADVANCING CHAPTER...
+              </span>
+              <button type="button" onclick="openStudioDrawer()"
+                class="sender-only text-amberGlow hover:underline shrink-0">
+                + Studio Media
+              </button>
+            </div>
+
+            <!-- 2px Smooth Auto-Advance Progress Bar Along Bottom Edge of Dynamic Island -->
+            <div class="absolute bottom-0 inset-x-0 h-[2px] bg-white/10 overflow-hidden">
+              <div id="island-progress-bar"
+                class="h-full w-0 bg-gradient-to-r from-amberGlow via-roseCoral to-amethystGlow"></div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right: Studio & Clean View Minimal Glass Controls -->
+      <div class="flex items-center gap-1.5 pt-0.5 shrink-0">
+        <button type="button" onclick="openStudioDrawer()"
+          class="sender-only px-3 py-1.5 rounded-full liquid-glass hover:bg-white/[0.12] font-sans text-[11px] font-medium text-ink transition active:scale-95">
+          Studio
+        </button>
+
+        <button type="button" id="clean-view-btn" onclick="toggleCleanView()"
+          class="px-3 py-1.5 rounded-full liquid-glass hover:bg-white/[0.12] font-sans text-[11px] font-medium text-mist hover:text-ink transition active:scale-95">
+          <span id="clean-view-label">Clean View</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- 2. CENTER INERTIAL 3D PARALLAX STAGE (GENEROUS PADDING & CLEAR BOTTOM VIEWPORT) -->
+    <main class="perspective-viewport flex-1 min-h-0 w-full max-w-[940px] mx-auto px-4 sm:px-7 py-2 sm:py-4 flex items-center justify-center overflow-hidden">
+      <div id="tilt-rig" class="relative w-full max-h-full">
+
+        <!-- ===================================================================
+             CHAPTER 01: 01 / 06 — 22.11 // PROLOGUE (WITH 4:5 HERO PORTRAIT FRAME)
+             =================================================================== -->
+        <section id="chapter-1" class="chapter-view is-active liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between gap-3.5 sm:gap-5">
+            <!-- Top Metadata Bar -->
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.14em] text-amberGlow">
+              <span class="truncate">01 / 06 — 22.11 // PROLOGUE</span>
+              <span class="text-ink/90 shrink-0">NOV 22 EDITION</span>
+            </div>
+
+            <!-- Split Grid: 4:5 Apple Liquid Glass Portrait Card + Masked Headline & 3 Option Pills -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+              <!-- Left: Dedicated 4:5 Apple Liquid Glass Portrait Frame (`assets/photo1.jpg`) -->
+              <div class="md:col-span-5 flex justify-center">
+                <div onclick="handleSlotClick(1)"
+                  class="hero-portrait-frame group relative w-44 sm:w-52 md:w-full md:max-w-[260px] aspect-[4/5] max-h-[210px] sm:max-h-[250px] md:max-h-[325px] rounded-[24px] p-1.5 overflow-hidden cursor-pointer transition-transform duration-500 hover:scale-[1.015]">
+                  <!-- Soft Rose-Gold & Violet Ambient Backlight -->
+                  <div class="absolute -inset-3 opacity-55 pointer-events-none blur-xl"
+                    style="background: radial-gradient(circle at 25% 20%, rgba(255,59,107,0.45), transparent 55%), radial-gradient(circle at 80% 80%, rgba(168,85,247,0.45), transparent 55%);"></div>
+
+                  <!-- Inner Specular Bezel Container -->
+                  <div class="relative w-full h-full rounded-[19px] overflow-hidden bg-obsidian/70 border border-white/20 flex flex-col justify-between">
+                    <img id="slot-img-1" src="" alt="Vanshika portrait" class="hidden absolute inset-0 w-full h-full object-cover object-center" />
+
+                    <!-- Refined "22.11" Glass Art Emblem Fallback -->
+                    <div id="slot-art-1" class="w-full h-full flex flex-col justify-between p-3.5 sm:p-4 relative">
+                      <div class="absolute inset-0 opacity-45 pointer-events-none"
+                        style="background: radial-gradient(circle at 30% 25%, rgba(255,184,0,0.30), transparent 60%), radial-gradient(circle at 80% 80%, rgba(255,59,107,0.28), transparent 60%);"></div>
+
+                      <div class="relative z-10 flex items-center justify-between font-mono text-[9px] text-amberGlow">
+                        <span>PORTRAIT // 01</span>
+                        <span>✦ 22.11</span>
+                      </div>
+
+                      <svg class="relative z-10 w-full h-16 sm:h-20 md:h-24 my-auto" viewBox="0 0 220 96" fill="none">
+                        <defs>
+                          <linearGradient id="titanium-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#FFE082" />
+                            <stop id="titanium-sheen-stop" offset="48%" stop-color="#FFFFFF" />
+                            <stop offset="100%" stop-color="#FF6B9D" />
+                          </linearGradient>
+                        </defs>
+                        <rect x="8" y="8" width="204" height="80" rx="18" stroke="rgba(255,215,128,0.32)" stroke-width="1.2" />
+                        <text x="110" y="63" text-anchor="middle" fill="url(#titanium-grad)"
+                          font-family="-apple-system, BlinkMacSystemFont, 'Plus Jakarta Sans', sans-serif"
+                          font-weight="700" font-size="48" letter-spacing="-0.05em">22.11</text>
+                      </svg>
+
+                      <div class="relative z-10 text-center font-mono text-[9px] tracking-[0.16em] text-mist/90">
+                        NOV 22 EDITION
+                      </div>
+                    </div>
+
+                    <!-- Floating Glass Tag: "22.11 • VANSHIKA" -->
+                    <div class="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between gap-1.5">
+                      <span class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 font-mono text-[9px] font-medium tracking-[0.12em] text-ink truncate">
+                        22.11 • <span class="recipient-upper">VANSHIKA</span>
+                      </span>
+                      <span class="sender-only px-2 py-1 rounded-full bg-black/75 border border-white/20 font-mono text-[9px] text-amberGlow group-hover:bg-amberGlow group-hover:text-obsidian transition shrink-0">
+                        + Photo
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Masked Apple Headline & 3 Non-Clipping Playable Scene Openers -->
+              <div class="md:col-span-7 flex flex-col justify-center space-y-2.5 sm:space-y-3.5 min-w-0">
+                <div>
+                  <h1 class="display-tracking text-2xl sm:text-3xl md:text-[35px] font-bold leading-[1.12]">
+                    <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:40ms">Happy</span></span>
+                    <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:100ms">Birthday,</span></span>
+                    <span class="word-mask"><span id="hero-recipient-word" class="word-inner text-white" style="--d:160ms">Vanshika.</span></span>
+                  </h1>
+                  <p class="font-mono text-[11px] sm:text-xs text-mist mt-1.5">
+                    November 22. Five worlds, queued up for you.
+                  </p>
+                </div>
+
+                <div class="space-y-2 pt-0.5">
+                  <button type="button" onclick="triggerSceneCue(1, 0)" id="cue-btn-1-0"
+                    class="apple-choice cue-group-1 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Luke Danes — First Pour</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">SCOTT PATTERSON • GILMORE GIRLS S01E01</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(1, 1)" id="cue-btn-1-1"
+                    class="apple-choice cue-group-1 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Joey Tribbiani — Purple Door</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">MATT LEBLANC • F.R.I.E.N.D.S. S08E03</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-roseCoral shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(1, 2)" id="cue-btn-1-2"
+                    class="apple-choice cue-group-1 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Max Verstappen — Lights Out</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">MAX VERSTAPPEN • 2023 F1 SEASON</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-cobaltGlow shrink-0 whitespace-nowrap">▶ RADIO</span>
+                  </button>
+                </div>
+
+                <!-- Neatly Integrated Card-Footer Status Hint (Keeps Bottom Viewport Clear) -->
+                <div class="pt-1 flex items-center justify-between font-mono text-[9.5px] tracking-[0.12em] text-mist/85">
+                  <span class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-amberGlow animate-pulse"></span>
+                    <span class="chapter-hint-text">TAP AN OPTION TO PLAY &amp; CONTINUE</span>
+                  </span>
+                  <span class="text-white/45">01 / 06</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             CHAPTER 02: 02 / 06 — STARS HOLLOW × CENTRAL PERK
+             =================================================================== -->
+        <section id="chapter-2" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between gap-3.5 sm:gap-5">
+            <!-- Top Metadata + Spatial Booth Switcher -->
+            <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.12em] text-amberGlow">
+              <span class="truncate">02 / 06 — STARS HOLLOW × CENTRAL PERK</span>
+
+              <!-- Interactive Spatial Booth Switcher -->
+              <div class="inline-flex p-0.5 rounded-full bg-black/45 border border-white/15 text-[9.5px] tracking-normal shrink-0">
+                <button type="button" onclick="switchBooth(0)" id="booth-tab-0"
+                  class="px-2.5 py-0.5 rounded-full bg-amberGlow/25 text-ink font-medium transition">
+                  Luke's Diner
+                </button>
+                <button type="button" onclick="switchBooth(1)" id="booth-tab-1"
+                  class="px-2.5 py-0.5 rounded-full text-mist hover:text-ink transition">
+                  Central Perk
+                </button>
+                <button type="button" onclick="switchBooth(2)" id="booth-tab-2"
+                  class="px-2.5 py-0.5 rounded-full text-mist hover:text-ink transition">
+                  Apt 20
+                </button>
+              </div>
+            </div>
+
+            <!-- Split Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+              <!-- Left: Specular Glass Frame / Photo Slot #2 -->
+              <div class="md:col-span-5">
+                <div onclick="handleSlotClick(2)"
+                  class="liquid-subpanel group relative h-24 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-amberGlow/45">
+                  <img id="slot-img-2" src="" alt="Cafe booth memory" class="hidden absolute inset-0 w-full h-full object-cover" />
+
+                  <div id="slot-art-2" class="h-full flex flex-col justify-between relative">
+                    <div class="absolute inset-0 opacity-35 pointer-events-none"
+                      style="background: radial-gradient(circle at 25% 25%, rgba(255,184,0,0.28), transparent 65%);"></div>
+
+                    <div class="relative z-10 flex items-center justify-between font-mono text-[10px] text-amberGlow">
+                      <span id="booth-code" class="truncate">STARS HOLLOW // LUKE'S DINER</span>
+                      <span class="shrink-0">22.11</span>
+                    </div>
+
+                    <div class="relative z-10 my-auto flex md:flex-col items-center md:items-start justify-between gap-2">
+                      <svg class="w-10 h-10 sm:w-12 sm:h-12 text-amberGlow shrink-0" viewBox="0 0 48 48" fill="none">
+                        <path d="M9 19H27V28C27 32.4183 23.4183 36 19 36H17C12.5817 36 9 32.4183 9 28V19Z" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M27 21H30.5C32.433 21 34 22.567 34 24.5C34 26.433 32.433 28 30.5 28H27" stroke="currentColor" stroke-width="1.7"/>
+                        <path d="M14 13V15.5M18 12V15.5M22 13V15.5" stroke="#FF3B6B" stroke-width="1.7" stroke-linecap="round"/>
+                        <path d="M30 13C33.5 9.5 39.5 9.5 43 13" stroke="#A855F7" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M36.5 10.5V20C36.5 21.1 35.6 22 34.5 22" stroke="#A855F7" stroke-width="1.6" stroke-linecap="round"/>
+                      </svg>
+                      <div class="text-right md:text-left md:mt-2 min-w-0">
+                        <p id="booth-title" class="font-sans text-sm sm:text-base font-semibold text-ink truncate">First Pour, Extra Foam</p>
+                        <p id="booth-sub" class="font-mono text-[10px] text-mist truncate">STARS HOLLOW • RESERVED COUNTER</p>
+                      </div>
+                    </div>
+
+                    <div class="relative z-10 hidden md:flex items-center justify-between font-mono text-[9.5px] text-mist pt-2 border-t border-white/[0.12]">
+                      <span>TABLE RESERVED</span>
+                      <span class="recipient-upper text-amberGlow">VANSHIKA</span>
+                    </div>
+                  </div>
+
+                  <span class="sender-only absolute bottom-2.5 right-2.5 z-10 px-2.5 py-0.5 rounded-full bg-black/75 border border-white/20 font-mono text-[9.5px] text-mist group-hover:text-ink transition">
+                    + Photo 02
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right: Masked Headline & 3 Authentic Scene Triggers -->
+              <div class="md:col-span-7 flex flex-col justify-center space-y-2.5 sm:space-y-3 min-w-0">
+                <h2 class="display-tracking text-xl sm:text-2xl md:text-[28px] font-semibold text-ink leading-[1.15]">
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:40ms">Two</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:80ms">iconic</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:120ms">hangouts.</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:170ms">Pick</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:210ms">your</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:250ms">table.</span></span>
+                </h2>
+
+                <div class="space-y-2">
+                  <button type="button" onclick="triggerSceneCue(2, 0)" id="cue-btn-2-0"
+                    class="apple-choice cue-group-2 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Lorelai Gilmore — Coffee in an IV</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">LAUREN GRAHAM • GILMORE GIRLS S02E05</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(2, 1)" id="cue-btn-2-1"
+                    class="apple-choice cue-group-2 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Chandler Bing — Central Perk Sofa</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">MATTHEW PERRY • F.R.I.E.N.D.S. S04E12</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(2, 2)" id="cue-btn-2-2"
+                    class="apple-choice cue-group-2 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Joey Tribbiani — November 22nd Slice</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">MATT LEBLANC • F.R.I.E.N.D.S. S07E14</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-roseCoral shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+                </div>
+
+                <!-- Card-Footer Navigation & Hint -->
+                <div class="pt-1 flex items-center justify-between font-mono text-[9.5px] tracking-[0.12em] text-mist/85">
+                  <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
+                  <span class="chapter-hint-text">TAP AN OPTION TO PLAY &amp; CONTINUE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             CHAPTER 03: 03 / 06 — MACLAREN'S PUB // HIMYM
+             =================================================================== -->
+        <section id="chapter-3" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between gap-3.5 sm:gap-5">
+            <!-- Top Metadata -->
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.14em] text-cobaltGlow">
+              <span class="truncate">03 / 06 — MACLAREN'S PUB // HIMYM</span>
+              <span class="text-amethystGlow shrink-0">NYC • BOOTH 04</span>
+            </div>
+
+            <!-- Split Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+              <!-- Left: Luminous Blue French Horn & Yellow Umbrella Plate / Photo Slot #3 -->
+              <div class="md:col-span-5">
+                <div onclick="handleSlotClick(3)"
+                  class="liquid-subpanel group relative h-24 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-cobaltGlow/45">
+                  <img id="slot-img-3" src="" alt="MacLaren's booth memory" class="hidden absolute inset-0 w-full h-full object-cover" />
+
+                  <div id="slot-art-3" class="h-full flex flex-col justify-between relative">
+                    <div class="absolute inset-0 opacity-35 pointer-events-none"
+                      style="background: radial-gradient(circle at 30% 30%, rgba(56,189,248,0.28), transparent 60%), radial-gradient(circle at 75% 75%, rgba(255,184,0,0.22), transparent 60%);"></div>
+
+                    <div class="relative z-10 flex items-center justify-between font-mono text-[10px] text-cobaltGlow">
+                      <span>ARTIFACT // ARCHIVE</span>
+                      <span>S01 — S09</span>
+                    </div>
+
+                    <div class="relative z-10 my-auto flex md:flex-col items-center md:items-start justify-between gap-2">
+                      <svg class="w-10 h-10 sm:w-14 sm:h-14 text-cobaltGlow shrink-0" viewBox="0 0 44 44" fill="none">
+                        <circle cx="20" cy="24" r="8" stroke="#38BDF8" stroke-width="1.8"/>
+                        <path d="M28 24C31.5 24 35 20.5 36.5 15.5L32 17C30.8 20 29 21.8 26.5 22.3" stroke="#38BDF8" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M12 24H7.5" stroke="#38BDF8" stroke-width="1.8" stroke-linecap="round"/>
+                        <path d="M13 11.5C17 8.5 23 8.5 27 11.5" stroke="#FFB800" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M20 9.5V14.5" stroke="#FFB800" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                      <div class="text-right md:text-left md:mt-2 min-w-0">
+                        <p class="font-sans text-sm sm:text-base font-semibold text-ink truncate">Timing &amp; Good Stories</p>
+                        <p class="font-mono text-[10px] text-amberGlow truncate">BLUE HORN • YELLOW UMBRELLA</p>
+                      </div>
+                    </div>
+
+                    <div class="relative z-10 hidden md:flex items-center justify-between font-mono text-[9.5px] text-mist pt-2 border-t border-white/[0.12]">
+                      <span>MACLAREN'S PUB</span>
+                      <span class="text-cobaltGlow">22.11</span>
+                    </div>
+                  </div>
+
+                  <span class="sender-only absolute bottom-2.5 right-2.5 z-10 px-2.5 py-0.5 rounded-full bg-black/75 border border-white/20 font-mono text-[9.5px] text-mist group-hover:text-ink transition">
+                    + Photo 03
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right: Masked Headline & 3 Iconic Scene Cues -->
+              <div class="md:col-span-7 flex flex-col justify-center space-y-2.5 sm:space-y-3 min-w-0">
+                <h2 class="display-tracking text-xl sm:text-2xl md:text-[28px] font-semibold text-ink leading-[1.15]">
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:40ms">Three</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:80ms">artifacts</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:120ms">from</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:170ms">Booth</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:210ms">04.</span></span>
+                </h2>
+
+                <div class="space-y-2">
+                  <button type="button" onclick="triggerSceneCue(3, 0)" id="cue-btn-3-0"
+                    class="apple-choice cue-group-3 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Ted Mosby — The Blue French Horn</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">JOSH RADNOR • HIMYM S01E01</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-cobaltGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(3, 1)" id="cue-btn-3-1"
+                    class="apple-choice cue-group-3 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Barney Stinson — Suit Up</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">NEIL PATRICK HARRIS • HIMYM S01E01</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-amethystGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(3, 2)" id="cue-btn-3-2"
+                    class="apple-choice cue-group-3 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Tracy McConnell — The Yellow Umbrella</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">CRISTIN MILIOTI • HIMYM S09E16</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                  </button>
+                </div>
+
+                <!-- Card-Footer Navigation & Hint -->
+                <div class="pt-1 flex items-center justify-between font-mono text-[9.5px] tracking-[0.12em] text-mist/85">
+                  <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
+                  <span class="chapter-hint-text">TAP AN OPTION TO PLAY &amp; CONTINUE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             CHAPTER 04: 04 / 06 — CA INTER // STATUTORY AUDIT
+             =================================================================== -->
+        <section id="chapter-4" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between gap-3 sm:gap-4">
+            <!-- Top Metadata -->
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.14em] text-amberGlow">
+              <span class="truncate">04 / 06 — CA INTER // STATUTORY AUDIT</span>
+              <span class="text-emeraldGlow shrink-0">SA 700 • VERIFIED</span>
+            </div>
+
+            <!-- Masked Headline -->
+            <h2 class="display-tracking text-xl sm:text-2xl md:text-[26px] font-semibold text-ink leading-[1.15]">
+              <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:40ms">First-attempt</span></span>
+              <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:90ms">tally.</span></span>
+              <span class="word-mask"><span class="word-inner text-ink" style="--d:140ms">Zero</span></span>
+              <span class="word-mask"><span class="word-inner text-ink" style="--d:180ms">suspense</span></span>
+              <span class="word-mask"><span class="word-inner text-ink" style="--d:220ms">account.</span></span>
+            </h2>
+
+            <!-- Titanium Balance Sheet Ledger + Biometric Audit Seal & Character Triggers -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-3 sm:gap-4 items-center">
+              <!-- Titanium Balance Sheet Card (7 Cols) -->
+              <div class="md:col-span-7 liquid-subpanel rounded-2xl overflow-hidden relative border-amberGlow/25">
+                <div class="px-3.5 py-2 bg-amberGlow/[0.08] border-b border-white/[0.12] flex flex-wrap items-center justify-between gap-1.5 font-mono text-[9.5px] sm:text-[10.5px]">
+                  <span class="text-ink font-medium">ENTITY: <span class="recipient-upper text-amberGlow">VANSHIKA</span> | STATUS: CA INTER</span>
+                  <span class="text-mist">DATE: 22 NOV</span>
+                </div>
+
+                <div class="divide-y divide-white/[0.08] font-mono text-[11px] sm:text-xs">
+                  <div class="px-3.5 py-2 flex items-center justify-between gap-2">
+                    <span class="text-ink truncate">Total Assets (Focus &amp; Caffeine)</span>
+                    <span class="text-emeraldGlow font-medium shrink-0">₹22,11,000</span>
+                  </div>
+                  <div class="px-3.5 py-2 flex items-center justify-between gap-2">
+                    <span class="text-ink truncate">Liabilities &amp; Equity (Tallied)</span>
+                    <span class="text-amberGlow font-medium shrink-0">₹22,11,000</span>
+                  </div>
+                  <div class="px-3.5 py-2 flex items-center justify-between gap-2">
+                    <span class="text-ink truncate">Audit Opinion</span>
+                    <span class="text-ink font-semibold shrink-0">True &amp; Fair</span>
+                  </div>
+                </div>
+
+                <!-- Stamped Emerald-Gold Seal -->
+                <div id="audit-emerald-seal" class="hidden absolute bottom-2 right-2.5 pointer-events-none">
+                  <div class="px-2.5 py-1 rounded-lg border border-emeraldGlow bg-[#090717]/95 text-emeraldGlow font-mono text-[9px] sm:text-[10px] font-semibold tracking-[0.12em] shadow-[0_0_24px_rgba(16,185,129,0.45)]">
+                    TRUE &amp; FAIR • UNQUALIFIED OPINION
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Biometric Audit Seal Button + Audit Partner & Senior Article Triggers (5 Cols) -->
+              <div class="md:col-span-5 flex flex-col gap-2 min-w-0">
+                <button type="button" id="biometric-audit-btn"
+                  onclick="triggerAuditSignOff(0)"
+                  class="apple-choice cue-group-4 w-full px-3.5 py-2.5 rounded-2xl flex items-center justify-between gap-3 cursor-pointer">
+                  <span class="choice-progress-fill"></span>
+                  <div class="relative z-10 flex items-center gap-2.5 flex-1 min-w-0">
+                    <div class="relative w-9 h-9 rounded-full flex items-center justify-center shrink-0">
+                      <svg class="w-full h-full -rotate-90" viewBox="0 0 96 96">
+                        <circle cx="48" cy="48" r="40" stroke="rgba(255,255,255,0.16)" stroke-width="6" fill="none" />
+                        <circle id="biometric-ring-circle" cx="48" cy="48" r="40"
+                          stroke="#10B981" stroke-width="6" stroke-linecap="round" fill="none"
+                          stroke-dasharray="251.33" stroke-dashoffset="251.33"
+                          style="transition: stroke-dashoffset 0.45s cubic-bezier(0.22, 1, 0.36, 1);" />
+                      </svg>
+                      <span id="biometric-icon" class="absolute font-mono text-xs text-emeraldGlow font-bold">✓</span>
+                    </div>
+                    <div class="text-left flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Biometric Audit Seal</span>
+                      <span id="biometric-caption" class="block font-mono text-[9.5px] text-emeraldGlow truncate">TAP TO STAMP &amp; SIGN OFF</span>
+                    </div>
+                  </div>
+                  <span class="relative z-10 font-mono text-[10px] font-medium text-emeraldGlow shrink-0 whitespace-nowrap">SEAL</span>
+                </button>
+
+                <button type="button" onclick="triggerAuditSignOff(1)" id="cue-btn-4-1"
+                  class="apple-choice cue-group-4 w-full text-left px-3.5 py-2 rounded-2xl flex items-center justify-between gap-3">
+                  <span class="choice-progress-fill"></span>
+                  <div class="relative z-10 flex-1 min-w-0">
+                    <span class="block text-xs font-medium text-ink truncate">Audit Partner — Unqualified Report</span>
+                    <span class="block font-mono text-[9.5px] text-mist truncate">PARTNER DESK • SA 700</span>
+                  </div>
+                  <span class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                </button>
+
+                <button type="button" onclick="triggerAuditSignOff(2)" id="cue-btn-4-2"
+                  class="apple-choice cue-group-4 w-full text-left px-3.5 py-2 rounded-2xl flex items-center justify-between gap-3">
+                  <span class="choice-progress-fill"></span>
+                  <div class="relative z-10 flex-1 min-w-0">
+                    <span class="block text-xs font-medium text-ink truncate">Senior Article — First-Attempt Tally</span>
+                    <span class="block font-mono text-[9.5px] text-mist truncate">AUDIT TEAM • NOV 22</span>
+                  </div>
+                  <span class="relative z-10 font-mono text-[10px] font-medium text-cobaltGlow shrink-0 whitespace-nowrap">▶ PLAY</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Card-Footer Navigation & Hint -->
+            <div class="pt-1 flex items-center justify-between font-mono text-[9.5px] tracking-[0.12em] text-mist/85">
+              <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
+              <span class="chapter-hint-text">TAP SEAL OR OPTION TO SIGN OFF &amp; CONTINUE</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             CHAPTER 05: 05 / 06 — ORACLE RED BULL RACING // RB19
+             =================================================================== -->
+        <section id="chapter-5" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between gap-3.5 sm:gap-5">
+            <!-- Top Telemetry Header + Interactive DRS / 21/22 -> 22/22 Toggle -->
+            <div class="flex flex-wrap items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.12em]">
+              <span class="text-roseCoral truncate">05 / 06 — ORACLE RED BULL RACING // RB19</span>
+
+              <button type="button" id="drs-toggle-btn" onclick="toggleDrsMode()"
+                class="px-3 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.15] border border-white/20 flex items-center gap-2 transition active:scale-95 shrink-0">
+                <span id="drs-dot" class="w-1.5 h-1.5 rounded-full bg-roseCoral"></span>
+                <span id="drs-label" class="text-[10px] text-ink font-medium">DRS WING: 21/22 → 22/22 EDITION</span>
+              </button>
+            </div>
+
+            <!-- Split Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+              <!-- Left: Luminous RB19 Telemetry HUD / Photo Slot #4 -->
+              <div class="md:col-span-5">
+                <div onclick="handleSlotClick(4)"
+                  class="liquid-subpanel group relative h-28 sm:h-44 md:h-60 w-full rounded-2xl overflow-hidden cursor-pointer flex flex-col justify-between p-3.5 sm:p-4 transition hover:border-roseCoral/45">
+                  <img id="slot-img-4" src="" alt="RB19 pit wall" class="hidden absolute inset-0 w-full h-full object-cover" />
+
+                  <div id="slot-art-4" class="h-full flex flex-col justify-between font-mono relative">
+                    <div class="absolute inset-0 opacity-35 pointer-events-none"
+                      style="background: radial-gradient(circle at 25% 25%, rgba(255,59,107,0.28), transparent 60%), radial-gradient(circle at 80% 75%, rgba(56,189,248,0.24), transparent 60%);"></div>
+
+                    <div class="relative z-10 flex items-center justify-between text-[9.5px]">
+                      <span class="text-roseCoral font-medium">CHASSIS // RB19 #01</span>
+                      <span id="rb19-win-counter" class="text-amberGlow font-semibold">21 / 22 WINS</span>
+                    </div>
+
+                    <!-- Luminous SVG Wireframe Profile of the RB19 -->
+                    <svg class="relative z-10 w-full h-14 sm:h-20 my-auto" viewBox="0 0 280 76" fill="none">
+                      <line x1="12" y1="64" x2="268" y2="64" stroke="rgba(255,255,255,0.18)" stroke-width="1" />
+                      <path d="M28 24H46V48H34" stroke="#FF3B6B" stroke-width="1.8" stroke-linecap="round" />
+                      <line id="rb19-drs-flap" x1="26" y1="24" x2="45" y2="24" stroke="#FFB800" stroke-width="2.2" stroke-linecap="round"
+                        style="transform-origin: 45px 24px; transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);" />
+                      <path d="M46 32C68 25 95 23 122 28C144 32 168 41 212 46L252 52C258 53 262 56 262 59H44"
+                        stroke="#F8FAFC" stroke-width="1.8" stroke-linejoin="round" />
+                      <path d="M126 28C136 21 154 22 164 31" stroke="#38BDF8" stroke-width="1.8" stroke-linecap="round" />
+                      <path d="M236 59H266L262 52" stroke="#FF3B6B" stroke-width="1.8" stroke-linejoin="round" />
+                      <circle cx="66" cy="51" r="13" fill="#090717" stroke="#F8FAFC" stroke-width="1.8" />
+                      <circle cx="66" cy="51" r="8.5" stroke="#FF3B6B" stroke-width="1.5" />
+                      <circle cx="218" cy="51" r="13" fill="#090717" stroke="#F8FAFC" stroke-width="1.8" />
+                      <circle cx="218" cy="51" r="8.5" stroke="#FF3B6B" stroke-width="1.5" />
+                    </svg>
+
+                    <!-- Live Purple Sector Split Indicators -->
+                    <div class="relative z-10 grid grid-cols-3 gap-1.5 text-[8.5px] sm:text-[9px] text-center">
+                      <div class="py-1 rounded-md bg-amethystGlow/20 text-purple-200 border border-amethystGlow/40">S1 26.412s</div>
+                      <div class="py-1 rounded-md bg-amethystGlow/20 text-purple-200 border border-amethystGlow/40">S2 34.108s</div>
+                      <div class="py-1 rounded-md bg-amberGlow/20 text-amberGlow border border-amberGlow/40">S3 21.904s</div>
+                    </div>
+                  </div>
+
+                  <span class="sender-only absolute bottom-2.5 right-2.5 z-10 px-2.5 py-0.5 rounded-full bg-black/75 border border-white/20 font-mono text-[9.5px] text-mist group-hover:text-ink transition">
+                    + Photo 04
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right: Masked Headline & 2 Team Radio Triggers -->
+              <div class="md:col-span-7 flex flex-col justify-center space-y-3 sm:space-y-4 min-w-0">
+                <h2 class="display-tracking text-xl sm:text-2xl md:text-[28px] font-semibold text-ink leading-[1.15]">
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:40ms">Twenty-one</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:80ms">wins</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:120ms">in</span></span>
+                  <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:160ms">’23.</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:210ms">Nov</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:250ms">22</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:290ms">completes</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:330ms">the</span></span>
+                  <span class="word-mask"><span class="word-inner text-ink" style="--d:370ms">set.</span></span>
+                </h2>
+
+                <div class="space-y-2">
+                  <button type="button" onclick="triggerSceneCue(5, 0)" id="cue-btn-5-0"
+                    class="apple-choice cue-group-5 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Gianpiero Lambiase — Mode Push</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">GP • RED BULL PIT WALL</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-roseCoral shrink-0 whitespace-nowrap">▶ RADIO</span>
+                  </button>
+
+                  <button type="button" onclick="triggerSceneCue(5, 1)" id="cue-btn-5-1"
+                    class="apple-choice cue-group-5 w-full text-left px-3.5 sm:px-4 py-2.5 rounded-2xl flex items-center justify-between gap-3">
+                    <span class="choice-progress-fill"></span>
+                    <div class="relative z-10 flex-1 min-w-0">
+                      <span class="block text-xs sm:text-sm font-medium text-ink truncate">Max Verstappen — RB19 Onboard</span>
+                      <span class="block font-mono text-[10px] text-mist truncate">MAX VERSTAPPEN • RB19 ONBOARD</span>
+                    </div>
+                    <span class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">▶ RADIO</span>
+                  </button>
+                </div>
+
+                <!-- Card-Footer Navigation & Hint -->
+                <div class="pt-1 flex items-center justify-between font-mono text-[9.5px] tracking-[0.12em] text-mist/85">
+                  <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
+                  <span class="chapter-hint-text">TAP TEAM RADIO TO PLAY &amp; CONTINUE</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================================
+             CHAPTER 06: 06 / 06 — 22.11 // SIGN-OFF
+             =================================================================== -->
+        <section id="chapter-6" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between items-center text-center gap-3.5 sm:gap-5 max-w-lg mx-auto">
+            <!-- Top Metadata -->
+            <div class="w-full flex items-center justify-between font-mono text-[10px] sm:text-[11px] tracking-[0.14em] text-amberGlow">
+              <span>06 / 06 — 22.11 // SIGN-OFF</span>
+              <span id="signoff-status-tag" class="text-roseCoral">READY TO ILLUMINATE</span>
+            </div>
+
+            <!-- Sculpted "22" Glass / Gold Monolith -->
+            <div id="monolith-22-card"
+              class="liquid-subpanel w-28 h-28 sm:w-32 sm:h-32 rounded-[26px] flex flex-col items-center justify-center relative overflow-hidden transition-all duration-700 border-amberGlow/30">
+              <div id="monolith-22-glow"
+                class="absolute inset-0 opacity-35 transition-opacity duration-700"
+                style="background: radial-gradient(circle, rgba(255,184,0,0.42), rgba(255,59,107,0.22) 60%, transparent 78%);"></div>
+              <span id="monolith-22-num"
+                class="relative z-10 display-tracking text-4xl sm:text-5xl font-bold birthday-gradient-text transition-all duration-700">
+                22
+              </span>
+              <span class="relative z-10 font-mono text-[9.5px] tracking-[0.2em] text-amberGlow mt-1">
+                NOVEMBER
+              </span>
+            </div>
+
+            <!-- Interactive Apple Slide-to-Illuminate "22" Light Bar -->
+            <div class="w-full max-w-xs">
+              <div id="light-slider-track"
+                class="relative h-12 rounded-full bg-black/50 border border-white/20 p-1 flex items-center select-none overflow-hidden cursor-pointer">
+                <div id="light-slider-fill"
+                  class="absolute inset-y-0 left-0 w-12 rounded-full pointer-events-none"
+                  style="background: linear-gradient(90deg, rgba(255,184,0,0.35), rgba(255,59,107,0.52));"></div>
+
+                <span id="light-slider-label"
+                  class="w-full text-center font-mono text-[10.5px] tracking-[0.14em] text-ink/90 uppercase pointer-events-none pl-7">
+                  Slide to illuminate 22 →
+                </span>
+
+                <div id="light-slider-thumb"
+                  class="relative z-10 w-10 h-10 rounded-full bg-gradient-to-br from-amberGlow to-roseCoral text-obsidian shadow-lg flex items-center justify-center font-mono text-xs font-bold cursor-grab active:cursor-grabbing shrink-0">
+                  ✦
+                </div>
+              </div>
+            </div>
+
+            <!-- Grounded, Non-Cliché Closing Note -->
+            <div id="closing-note-wrapper" class="transition-all duration-700 opacity-90">
+              <p id="closing-note-display" class="text-xs sm:text-sm md:text-[15px] text-ink font-normal leading-relaxed">
+                Wishing you an effortless year ahead—cleared audits, purple sectors, and good coffee on tap. Happy Birthday, Vanshika.
+              </p>
+            </div>
+
+            <!-- Card-Footer Controls (Keeps Bottom Viewport Completely Clear) -->
+            <div class="w-full pt-2 border-t border-white/[0.12] flex items-center justify-between font-mono text-[10px] text-mist">
+              <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
+              <span class="text-amberGlow">VANSHIKA // 22.11</span>
+              <button type="button" onclick="resetExperience()"
+                class="px-3.5 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.16] border border-white/15 text-ink transition active:scale-95">
+                Replay ↺
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+  </div>
+
+  <!-- =========================================================================
+       STUDIO DRAWER (CUSTOMIZE NAME, 4 PHOTOS, ORIGINAL SCENE CLIPS & NOTE)
+       ========================================================================= -->
+  <div id="studio-backdrop" onclick="closeStudioDrawer()"
+    class="fixed inset-0 z-40 hidden bg-black/70 backdrop-blur-xs transition-opacity"></div>
+
+  <aside id="studio-drawer"
+    class="fixed top-0 right-0 z-50 h-[100dvh] w-full max-w-md liquid-glass border-l border-white/15 shadow-2xl transform translate-x-full transition-transform duration-500 flex flex-col"
+    style="transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);">
+
+    <!-- Studio Header -->
+    <div class="h-[54px] px-5 border-b border-white/10 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-amberGlow"></span>
+        <span class="font-mono text-xs tracking-[0.14em] text-ink">STUDIO // 22.11</span>
+      </div>
+      <button type="button" onclick="closeStudioDrawer()"
+        class="w-7 h-7 rounded-full bg-white/[0.06] hover:bg-white/[0.14] text-mist hover:text-ink flex items-center justify-center text-xs transition">
+        ✕
+      </button>
+    </div>
+
+    <!-- Studio Scrollable Controls -->
+    <div class="flex-1 overflow-y-auto p-5 space-y-6 select-text">
+
+      <!-- 1. Recipient Name -->
+      <div class="space-y-1.5">
+        <label for="studio-name-input" class="block font-mono text-[10px] tracking-wider uppercase text-mist">
+          Recipient Name
+        </label>
+        <input id="studio-name-input" type="text" value="Vanshika" oninput="handleNameChange(this.value)"
+          class="w-full px-3.5 py-2 rounded-xl bg-black/55 border border-white/15 text-xs sm:text-sm text-ink focus:outline-none focus:border-white/35" />
+      </div>
+
+      <!-- 2. Gallery Photo Slots (1–4) -->
+      <div class="space-y-2.5">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10px] tracking-wider uppercase text-mist">Photo Frames (assets/photo1–4.jpg)</span>
+          <span class="font-mono text-[9.5px] text-mist">Saved locally</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2.5">
+          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-ink">01. Portrait</span>
+              <button type="button" onclick="clearPhotoSlot(1)" class="text-mist hover:text-crimsonGlow">Clear</button>
+            </div>
+            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
+              Upload Photo
+              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 1)" class="hidden" />
+            </label>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-ink">02. Café Booth</span>
+              <button type="button" onclick="clearPhotoSlot(2)" class="text-mist hover:text-crimsonGlow">Clear</button>
+            </div>
+            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
+              Upload Photo
+              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 2)" class="hidden" />
+            </label>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-ink">03. MacLaren's</span>
+              <button type="button" onclick="clearPhotoSlot(3)" class="text-mist hover:text-crimsonGlow">Clear</button>
+            </div>
+            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
+              Upload Photo
+              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 3)" class="hidden" />
+            </label>
+          </div>
+
+          <div class="p-2.5 rounded-xl bg-black/45 border border-white/10 space-y-2">
+            <div class="flex items-center justify-between font-mono text-[10px]">
+              <span class="text-ink">04. RB19 Grid</span>
+              <button type="button" onclick="clearPhotoSlot(4)" class="text-mist hover:text-crimsonGlow">Clear</button>
+            </div>
+            <label class="block w-full py-1.5 rounded-lg bg-white/[0.06] hover:bg-white/[0.12] text-center font-mono text-[10px] text-ink cursor-pointer transition">
+              Upload Photo
+              <input type="file" accept="image/*" onchange="handleStudioPhotoUpload(event, 4)" class="hidden" />
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Original Scene Clip Uploaders (.mp3, .m4a, .wav, .mp4, .webm) -->
+      <div class="space-y-2.5">
+        <div>
+          <span class="block font-mono text-[10px] tracking-wider uppercase text-mist">
+            Original Scene Media Clips (assets/*.mp3)
+          </span>
+          <p class="text-[11px] text-mist mt-0.5 leading-snug">
+            On GitHub Pages, place your .mp3 files in <code class="text-amberGlow">assets/</code> using the exact filenames below, or attach files here to preview locally.
+          </p>
+        </div>
+
+        <div id="studio-clip-list" class="space-y-2"></div>
+      </div>
+
+      <!-- 4. Closing Note Editor -->
+      <div class="space-y-1.5">
+        <label for="studio-note-input" class="block font-mono text-[10px] tracking-wider uppercase text-mist">
+          Chapter 06 Closing Note
+        </label>
+        <textarea id="studio-note-input" rows="3" oninput="handleNoteChange(this.value)"
+          class="w-full px-3.5 py-2 rounded-xl bg-black/55 border border-white/15 text-xs text-ink leading-relaxed focus:outline-none focus:border-white/35"></textarea>
+      </div>
+    </div>
+
+    <!-- Studio Footer -->
+    <div class="px-5 py-3.5 border-t border-white/10 flex items-center justify-between shrink-0 bg-black/40">
+      <button type="button" onclick="toggleCleanView(); closeStudioDrawer();"
+        class="font-mono text-[11px] text-emeraldGlow hover:underline">
+        Switch to Clean View
+      </button>
+      <button type="button" onclick="closeStudioDrawer()"
+        class="px-5 py-1.5 rounded-full bg-ink text-obsidian font-sans text-xs font-semibold hover:bg-white transition">
+        Done
+      </button>
+    </div>
+  </aside>
+
+  <!-- =========================================================================
+       CLEAN, SINGLE-PASS APPLE-KEYNOTE ENGINE & CENTRALIZED MEDIA_CONFIG
+       ========================================================================= -->
+  <script>
+    // =========================================================================
+    // 0. CENTRALIZED GITHUB PAGES MEDIA CONFIGURATION (assets/)
+    // =========================================================================
+    const MEDIA_CONFIG = {
+      photos: {
+        photo1: 'assets/photo1.jpg',
+        photo2: 'assets/photo2.jpg',
+        photo3: 'assets/photo3.jpg',
+        photo4: 'assets/photo4.jpg'
+      },
+      audio: {
+        '1-0': 'assets/luke-coffee.mp3',
+        '1-1': 'assets/joey-how-you-doin.mp3',
+        '1-2': 'assets/max-simply-lovely.mp3',
+        '2-0': 'assets/lorelai-coffee.mp3',
+        '2-1': 'assets/chandler-sarcastic.mp3',
+        '2-2': 'assets/joey-booth.mp3',
+        '3-0': 'assets/ted-orchestra.mp3',
+        '3-1': 'assets/barney-legendary.mp3',
+        '3-2': 'assets/tracy-umbrella.mp3',
+        '4-0': 'assets/audit-bell.mp3',
+        '4-1': 'assets/audit-bell.mp3',
+        '4-2': 'assets/audit-bell.mp3',
+        '5-0': 'assets/gp-radio.mp3',
+        '5-1': 'assets/max-radio.mp3'
+      }
+    };
+
+    const DEFAULT_RECIPIENT = 'Vanshika';
+    const DEFAULT_CLOSING_NOTE =
+      'Wishing you an effortless year ahead—cleared audits, purple sectors, and good coffee on tap. Happy Birthday, Vanshika.';
+
+    // =========================================================================
+    // 1. SCENE CUES CATALOG (ORIGINAL ACTOR / SHOW METADATA + FOLEY TYPE)
+    // =========================================================================
+    const SCENE_CUES = {
+      '1-0': {
+        chapter: 1,
+        index: 0,
+        character: 'Luke Danes',
+        actor: 'Scott Patterson',
+        meta: 'GILMORE GIRLS • S01E01',
+        quote: '“Coffee, coffee, coffee. Happy birthday—now take a breath before the day starts.”',
+        accent: 'amber',
+        foley: 'espresso'
+      },
+      '1-1': {
+        chapter: 1,
+        index: 1,
+        character: 'Joey Tribbiani',
+        actor: 'Matt LeBlanc',
+        meta: 'F.R.I.E.N.D.S. • S08E03',
+        quote: "“How you doin'? Seriously though—happy birthday, Vanshika.”",
+        accent: 'crimson',
+        foley: 'pub'
+      },
+      '1-2': {
+        chapter: 1,
+        index: 2,
+        character: 'Max Verstappen',
+        actor: 'Max Verstappen',
+        meta: '2023 F1 SEASON • RB19',
+        quote: '“Haha, yes boys! Simply lovely. Purple sectors all day today.”',
+        accent: 'cobalt',
+        foley: 'f1'
+      },
+      '2-0': {
+        chapter: 2,
+        index: 0,
+        character: 'Lorelai Gilmore',
+        actor: 'Lauren Graham',
+        meta: 'GILMORE GIRLS • S02E05',
+        quote: "“I need coffee in an IV. It's a birthday, Luke—rules don't apply today.”",
+        accent: 'amber',
+        foley: 'espresso'
+      },
+      '2-1': {
+        chapter: 2,
+        index: 1,
+        character: 'Chandler Bing',
+        actor: 'Matthew Perry',
+        meta: 'F.R.I.E.N.D.S. • S04E12',
+        quote: "“Could this day BE any better? Don't answer that—just enjoy the cake.”",
+        accent: 'amber',
+        foley: 'pub'
+      },
+      '2-2': {
+        chapter: 2,
+        index: 2,
+        character: 'Joey Tribbiani',
+        actor: 'Matt LeBlanc',
+        meta: 'F.R.I.E.N.D.S. • S07E14',
+        quote: "“Joey doesn't share food... except maybe a slice on November 22nd.”",
+        accent: 'crimson',
+        foley: 'pub'
+      },
+      '3-0': {
+        chapter: 3,
+        index: 0,
+        character: 'Ted Mosby',
+        actor: 'Josh Radnor',
+        meta: 'HIMYM • S01E01',
+        quote: '“I would have stolen you a whole orchestra. Happy birthday.”',
+        accent: 'cobalt',
+        foley: 'pub'
+      },
+      '3-1': {
+        chapter: 3,
+        index: 1,
+        character: 'Barney Stinson',
+        actor: 'Neil Patrick Harris',
+        meta: 'HIMYM • S01E01',
+        quote: '“November 22nd is going to be legen—wait for it—dary. Suit up.”',
+        accent: 'cobalt',
+        foley: 'pub'
+      },
+      '3-2': {
+        chapter: 3,
+        index: 2,
+        character: 'Tracy McConnell',
+        actor: 'Cristin Milioti',
+        meta: 'HIMYM • S09E16',
+        quote: '“Funny how sometimes you just find things—right when the timing is right.”',
+        accent: 'amber',
+        foley: 'pub'
+      },
+      '4-0': {
+        chapter: 4,
+        index: 0,
+        character: 'Biometric Audit Seal',
+        actor: 'CA Inter Desk',
+        meta: 'SA 700 • UNQUALIFIED OPINION',
+        quote: '“Balance sheet tallied on the very first attempt—True & Fair.”',
+        accent: 'emerald',
+        foley: 'stamp'
+      },
+      '4-1': {
+        chapter: 4,
+        index: 1,
+        character: 'Audit Partner',
+        actor: 'Partner Desk',
+        meta: 'CA INTER • SA 700 SIGN-OFF',
+        quote: '“Unqualified opinion issued. Cleanest working papers on November 22nd.”',
+        accent: 'emerald',
+        foley: 'stamp'
+      },
+      '4-2': {
+        chapter: 4,
+        index: 2,
+        character: 'Senior Article',
+        actor: 'Statutory Audit Team',
+        meta: 'CA INTER • FIRST-ATTEMPT TALLY',
+        quote: '“Assets equal liabilities on the first try—no suspense account required.”',
+        accent: 'emerald',
+        foley: 'stamp'
+      },
+      '5-0': {
+        chapter: 5,
+        index: 0,
+        character: 'Gianpiero Lambiase',
+        actor: 'GP • Red Bull Pit Wall',
+        meta: 'ORACLE RED BULL RACING • RB19',
+        quote: '“Mode push, Vanshika. Track limits are clear—enjoy the lap.”',
+        accent: 'crimson',
+        foley: 'f1'
+      },
+      '5-1': {
+        chapter: 5,
+        index: 1,
+        character: 'Max Verstappen',
+        actor: 'Max Verstappen',
+        meta: 'RB19 ONBOARD • CAR #01',
+        quote: '“The car feels mega today. Honestly, unbelievable pace.”',
+        accent: 'amber',
+        foley: 'f1'
+      }
+    };
+
+    // =========================================================================
+    // 2. APPLICATION STATE & LOCAL STORAGE PERSISTENCE
+    // =========================================================================
+    const state = {
+      currentChapter: 1,
+      totalChapters: 6,
+      cleanView: false,
+      recipientName: DEFAULT_RECIPIENT,
+      closingNote: DEFAULT_CLOSING_NOTE,
+      photos: { 1: '', 2: '', 3: '', 4: '' },
+      pendingPhotoSlot: 1,
+      sceneClips: {},
+      activeCueKey: null,
+      activeChoiceBtn: null,
+      islandExpanded: false,
+      drsActive: false,
+      auditSigned: false,
+      illuminated: false
+    };
+
+    function loadSavedState() {
+      try {
+        const savedName = localStorage.getItem('v22_recipient_name');
+        const savedNote = localStorage.getItem('v22_closing_note');
+        const savedPhotos = localStorage.getItem('v22_photos');
+        if (savedName) state.recipientName = savedName;
+        if (savedNote) state.closingNote = savedNote;
+        if (savedPhotos) {
+          const parsed = JSON.parse(savedPhotos);
+          state.photos = { ...state.photos, ...parsed };
+        }
+      } catch (_) {}
+    }
+
+    function persistPhotos() {
+      try {
+        localStorage.setItem('v22_photos', JSON.stringify(state.photos));
+      } catch (_) {
+        showToast('Photo loaded for session');
+      }
+    }
+
+    // =========================================================================
+    // 3. CHAPTER AMBIENT LIGHTING, TOP PILLS & Z-AXIS OPTICAL BLUR NAVIGATION
+    // =========================================================================
+    const CHAPTER_ORBS = {
+      1: {
+        p: 'radial-gradient(circle, rgba(255,184,0,0.42), rgba(255,59,107,0.18) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(168,85,247,0.40), rgba(56,189,248,0.18) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(255,59,107,0.28), transparent 70%)',
+        pt: 'translate3d(0px, 0px, 0px)',
+        st: 'translate3d(0px, 0px, 0px)'
+      },
+      2: {
+        p: 'radial-gradient(circle, rgba(255,184,0,0.45), rgba(251,146,60,0.20) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(168,85,247,0.38), rgba(255,59,107,0.18) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(255,184,0,0.28), transparent 70%)',
+        pt: 'translate3d(60px, 30px, 0px)',
+        st: 'translate3d(-50px, -25px, 0px)'
+      },
+      3: {
+        p: 'radial-gradient(circle, rgba(56,189,248,0.44), rgba(168,85,247,0.20) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(255,184,0,0.36), rgba(56,189,248,0.16) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(168,85,247,0.30), transparent 70%)',
+        pt: 'translate3d(30px, 55px, 0px)',
+        st: 'translate3d(-40px, -35px, 0px)'
+      },
+      4: {
+        p: 'radial-gradient(circle, rgba(16,185,129,0.42), rgba(255,184,0,0.20) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(255,184,0,0.38), rgba(56,189,248,0.16) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(16,185,129,0.26), transparent 70%)',
+        pt: 'translate3d(80px, 10px, 0px)',
+        st: 'translate3d(-60px, -15px, 0px)'
+      },
+      5: {
+        p: 'radial-gradient(circle, rgba(255,59,107,0.45), rgba(255,184,0,0.20) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(56,189,248,0.42), rgba(168,85,247,0.20) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(255,59,107,0.30), transparent 70%)',
+        pt: 'translate3d(20px, 40px, 0px)',
+        st: 'translate3d(-30px, -30px, 0px)'
+      },
+      6: {
+        p: 'radial-gradient(circle, rgba(255,184,0,0.48), rgba(255,59,107,0.24) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(255,59,107,0.42), rgba(168,85,247,0.22) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(255,184,0,0.32), transparent 70%)',
+        pt: 'translate3d(45px, 25px, 0px)',
+        st: 'translate3d(-45px, -20px, 0px)'
+      }
+    };
+
+    function updateAmbientOrbs(chapterNum) {
+      const cfg = CHAPTER_ORBS[chapterNum] || CHAPTER_ORBS[1];
+      const orbP = document.getElementById('orb-primary');
+      const orbS = document.getElementById('orb-secondary');
+      const orbT = document.getElementById('orb-tertiary');
+      if (orbP) {
+        orbP.style.background = cfg.p;
+        orbP.style.transform = cfg.pt;
+      }
+      if (orbS) {
+        orbS.style.background = cfg.s;
+        orbS.style.transform = cfg.st;
+      }
+      if (orbT) {
+        orbT.style.background = cfg.t;
+      }
+    }
+
+    function renderProgressIndicators() {
+      const desktopPills = document.getElementById('top-progress-pills');
+      const mobileDots = document.getElementById('island-mobile-dots');
+      const topCode = document.getElementById('top-chapter-code');
+
+      if (topCode) {
+        topCode.textContent = `0${state.currentChapter} / 0${state.totalChapters}`;
+      }
+
+      if (desktopPills) {
+        desktopPills.innerHTML = '';
+        for (let i = 1; i <= state.totalChapters; i++) {
+          const pill = document.createElement('button');
+          pill.type = 'button';
+          pill.title = `Chapter 0${i}`;
+          pill.onclick = () => {
+            cancelAutoAdvance();
+            goToChapter(i);
+          };
+          const isCurrent = i === state.currentChapter;
+          const isDone = i < state.currentChapter;
+          pill.className = `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+            isCurrent
+              ? 'w-6 bg-gradient-to-r from-amberGlow to-roseCoral shadow-[0_0_10px_rgba(255,184,0,0.5)]'
+              : isDone
+              ? 'w-2 bg-white/65 hover:bg-white'
+              : 'w-2 bg-white/20 hover:bg-white/45'
+          }`;
+          desktopPills.appendChild(pill);
+        }
+      }
+
+      if (mobileDots) {
+        mobileDots.innerHTML = '';
+        for (let i = 1; i <= state.totalChapters; i++) {
+          const dot = document.createElement('button');
+          dot.type = 'button';
+          dot.title = `Chapter 0${i}`;
+          dot.onclick = () => {
+            cancelAutoAdvance();
+            goToChapter(i);
+          };
+          const isCurrent = i === state.currentChapter;
+          const isDone = i < state.currentChapter;
+          dot.className = `h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+            isCurrent ? 'w-3.5 bg-amberGlow' : isDone ? 'w-1.5 bg-white/60' : 'w-1.5 bg-white/20'
+          }`;
+          mobileDots.appendChild(dot);
+        }
+      }
+    }
+
+    function setCardHints(text) {
+      document.querySelectorAll('.chapter-hint-text').forEach(el => {
+        el.textContent = text;
+      });
+    }
+
+    function goToChapter(targetNum) {
+      if (targetNum < 1 || targetNum > state.totalChapters || targetNum === state.currentChapter) return;
+      cancelAutoAdvance();
+      stopAllMedia();
+      collapseDynamicIsland();
+
+      const outgoing = document.getElementById(`chapter-${state.currentChapter}`);
+      const incoming = document.getElementById(`chapter-${targetNum}`);
+
+      if (outgoing) {
+        outgoing.classList.remove('is-active');
+        outgoing.classList.add('is-exiting');
+        setTimeout(() => outgoing.classList.remove('is-exiting'), 680);
+      }
+
+      if (incoming) {
+        incoming.classList.remove('is-exiting');
+        void incoming.offsetWidth;
+        incoming.classList.add('is-active');
+      }
+
+      state.currentChapter = targetNum;
+      setCardHints('TAP AN OPTION TO PLAY & CONTINUE');
+      updateAmbientOrbs(targetNum);
+      renderProgressIndicators();
+    }
+
+    function navigateChapter(delta) {
+      cancelAutoAdvance();
+      if (delta > 0 && state.currentChapter < state.totalChapters) {
+        goToChapter(state.currentChapter + 1);
+      } else if (delta < 0 && state.currentChapter > 1) {
+        goToChapter(state.currentChapter - 1);
+      }
+    }
+
+    // =========================================================================
+    // 4. SAFE MEDIA ENGINE, TACTILE WEB AUDIO FOLEY & AUTO-ADVANCE TIMER
+    // =========================================================================
+    let audioCtx = null;
+    let analyser = null;
+    let mediaSourceNode = null;
+    let waveAnimId = null;
+    let foleyTimer = null;
+    let autoAdvancePauseTimer = null;
+    let progressRafId = null;
+
+    function ensureAudioContext() {
+      try {
+        if (!audioCtx) {
+          const Ctx = window.AudioContext || window.webkitAudioContext;
+          if (Ctx) audioCtx = new Ctx();
+        }
+        if (audioCtx && audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(() => {});
+        }
+      } catch (_) {}
+      return audioCtx;
+    }
+
+    function resetWaveBars() {
+      const heights = [6, 12, 8, 16, 10, 14, 6];
+      document.querySelectorAll('#island-waveform .wave-bar').forEach((bar, i) => {
+        bar.style.height = `${heights[i % heights.length]}px`;
+      });
+    }
+
+    function startHarmonicWave(useAnalyser) {
+      cancelAnimationFrame(waveAnimId);
+      const bars = document.querySelectorAll('#island-waveform .wave-bar');
+      if (!bars.length) return;
+      const dataArray = useAnalyser && analyser ? new Uint8Array(analyser.frequencyBinCount) : null;
+
+      function tick(now) {
+        if (useAnalyser && analyser && dataArray) {
+          try {
+            analyser.getByteFrequencyData(dataArray);
+            bars.forEach((bar, idx) => {
+              const val = dataArray[(idx * 2) % dataArray.length] || 0;
+              const h = Math.max(4, Math.min(20, 4 + (val / 255) * 16));
+              bar.style.height = `${h.toFixed(1)}px`;
+            });
+          } catch (_) {}
+        } else {
+          bars.forEach((bar, idx) => {
+            const wave = Math.sin(now * 0.011 + idx * 1.15) * 0.5 + 0.5;
+            const h = 5 + wave * 13;
+            bar.style.height = `${h.toFixed(1)}px`;
+          });
+        }
+        waveAnimId = requestAnimationFrame(tick);
+      }
+      waveAnimId = requestAnimationFrame(tick);
+    }
+
+    function playTactileFoley(type) {
+      try {
+        const ctx = ensureAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        if (type === 'espresso') {
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc1.type = 'sine';
+          osc2.type = 'triangle';
+          osc1.frequency.setValueAtTime(1180, now);
+          osc1.frequency.exponentialRampToValueAtTime(1560, now + 0.09);
+          osc2.frequency.setValueAtTime(590, now + 0.06);
+          gain.gain.setValueAtTime(0.001, now);
+          gain.gain.linearRampToValueAtTime(0.11, now + 0.015);
+          gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.48);
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(ctx.destination);
+          osc1.start(now);
+          osc2.start(now + 0.05);
+          osc1.stop(now + 0.5);
+          osc2.stop(now + 0.5);
+        } else if (type === 'pub') {
+          [261.63, 329.63, 392.0, 493.88].forEach((freq, idx) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + idx * 0.035);
+            gain.gain.setValueAtTime(0.001, now + idx * 0.035);
+            gain.gain.linearRampToValueAtTime(0.055, now + idx * 0.035 + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.75);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + idx * 0.035);
+            osc.stop(now + 0.78);
+          });
+        } else if (type === 'stamp') {
+          const thud = ctx.createOscillator();
+          const thudGain = ctx.createGain();
+          thud.type = 'sine';
+          thud.frequency.setValueAtTime(150, now);
+          thud.frequency.exponentialRampToValueAtTime(48, now + 0.14);
+          thudGain.gain.setValueAtTime(0.16, now);
+          thudGain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+          thud.connect(thudGain);
+          thudGain.connect(ctx.destination);
+          thud.start(now);
+          thud.stop(now + 0.17);
+
+          const ping = ctx.createOscillator();
+          const pingGain = ctx.createGain();
+          ping.type = 'sine';
+          ping.frequency.setValueAtTime(1046.5, now + 0.08);
+          pingGain.gain.setValueAtTime(0.001, now + 0.08);
+          pingGain.gain.linearRampToValueAtTime(0.08, now + 0.1);
+          pingGain.gain.exponentialRampToValueAtTime(0.0008, now + 0.55);
+          ping.connect(pingGain);
+          pingGain.connect(ctx.destination);
+          ping.start(now + 0.08);
+          ping.stop(now + 0.58);
+        } else if (type === 'f1') {
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(740, now);
+          osc.frequency.setValueAtTime(987.77, now + 0.09);
+          gain.gain.setValueAtTime(0.08, now);
+          gain.gain.exponentialRampToValueAtTime(0.0008, now + 0.36);
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.38);
+        }
+      } catch (_) {}
+    }
+
+    function stopAllMedia() {
+      try {
+        const audioEl = document.getElementById('scene-audio-player');
+        const videoEl = document.getElementById('scene-video-player');
+        const waveEl = document.getElementById('island-waveform');
+        if (audioEl) {
+          audioEl.onerror = null;
+          audioEl.onended = null;
+          audioEl.pause();
+          audioEl.currentTime = 0;
+        }
+        if (videoEl) {
+          videoEl.pause();
+          videoEl.currentTime = 0;
+          videoEl.classList.add('hidden');
+        }
+        if (waveEl) waveEl.classList.remove('hidden');
+      } catch (_) {}
+      clearTimeout(foleyTimer);
+      cancelAnimationFrame(waveAnimId);
+      resetWaveBars();
+    }
+
+    function cancelAutoAdvance() {
+      clearTimeout(autoAdvancePauseTimer);
+      cancelAnimationFrame(progressRafId);
+      autoAdvancePauseTimer = null;
+      progressRafId = null;
+
+      const islandBar = document.getElementById('island-progress-bar');
+      if (islandBar) islandBar.style.width = '0%';
+
+      document.querySelectorAll('.choice-progress-fill').forEach(el => {
+        el.style.width = '0%';
+      });
+    }
+
+    function setPlaybackProgress(pct) {
+      const clamped = Math.max(0, Math.min(100, pct));
+      const islandBar = document.getElementById('island-progress-bar');
+      if (islandBar) islandBar.style.width = `${clamped.toFixed(2)}%`;
+
+      if (state.activeChoiceBtn) {
+        const fill = state.activeChoiceBtn.querySelector('.choice-progress-fill');
+        if (fill) fill.style.width = `${clamped.toFixed(2)}%`;
+      }
+    }
+
+    function scheduleAutoAdvanceToNext(fromChapter) {
+      if (fromChapter >= state.totalChapters) return;
+      setCardHints('ADVANCING TO NEXT CHAPTER...');
+
+      autoAdvancePauseTimer = setTimeout(() => {
+        if (state.currentChapter === fromChapter) {
+          goToChapter(fromChapter + 1);
+        }
+      }, 550);
+    }
+
+    function runTimedProgressAndAdvance(durationMs, fromChapter) {
+      cancelAnimationFrame(progressRafId);
+      const startTime = performance.now();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        const pct = (elapsed / durationMs) * 100;
+        setPlaybackProgress(pct);
+        if (elapsed < durationMs) {
+          progressRafId = requestAnimationFrame(step);
+        } else {
+          setPlaybackProgress(100);
+          scheduleAutoAdvanceToNext(fromChapter);
+        }
+      }
+      progressRafId = requestAnimationFrame(step);
+    }
+
+    function playAudioSource(url, fallbackFoley, badgeEl, activeLabel, autoAdvanceChapter = null) {
+      const audioEl = document.getElementById('scene-audio-player');
+      const fallbackToFoleyTimer = () => {
+        if (badgeEl) {
+          badgeEl.textContent = autoAdvanceChapter
+            ? 'SCENE CUE • AUTO-ADVANCING'
+            : `TACTILE FOLEY // ${url.replace('assets/', '').toUpperCase()}`;
+        }
+        playTactileFoley(fallbackFoley);
+        startHarmonicWave(false);
+        foleyTimer = setTimeout(() => {
+          cancelAnimationFrame(waveAnimId);
+          resetWaveBars();
+        }, 1500);
+        if (autoAdvanceChapter) {
+          runTimedProgressAndAdvance(3600, autoAdvanceChapter);
+        }
+      };
+
+      if (!audioEl) {
+        fallbackToFoleyTimer();
+        return;
+      }
+
+      try {
+        audioEl.onerror = null;
+        audioEl.onended = null;
+        audioEl.src = url;
+
+        const syncAudioProgress = () => {
+          if (!audioEl.paused && !audioEl.ended && audioEl.duration && isFinite(audioEl.duration)) {
+            setPlaybackProgress((audioEl.currentTime / audioEl.duration) * 100);
+            progressRafId = requestAnimationFrame(syncAudioProgress);
+          }
+        };
+
+        audioEl.onerror = fallbackToFoleyTimer;
+        audioEl.onended = () => {
+          cancelAnimationFrame(waveAnimId);
+          cancelAnimationFrame(progressRafId);
+          setPlaybackProgress(100);
+          resetWaveBars();
+          if (autoAdvanceChapter) {
+            scheduleAutoAdvanceToNext(autoAdvanceChapter);
+          }
+        };
+
+        const playPromise = audioEl.play();
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              if (badgeEl) badgeEl.textContent = activeLabel;
+              startHarmonicWave(false);
+              cancelAnimationFrame(progressRafId);
+              progressRafId = requestAnimationFrame(syncAudioProgress);
+            })
+            .catch(fallbackToFoleyTimer);
+        } else {
+          fallbackToFoleyTimer();
+        }
+      } catch (_) {
+        fallbackToFoleyTimer();
+      }
+    }
+
+    function expandDynamicIsland(cueKey, autoAdvance = false) {
+      const cue = SCENE_CUES[cueKey];
+      if (!cue) return;
+
+      cancelAutoAdvance();
+      state.activeCueKey = cueKey;
+      state.islandExpanded = true;
+
+      const island = document.getElementById('dynamic-island');
+      const compact = document.getElementById('island-compact');
+      const expanded = document.getElementById('island-expanded');
+
+      const charEl = document.getElementById('island-character');
+      const actorEl = document.getElementById('island-actor');
+      const metaEl = document.getElementById('island-meta');
+      const quoteEl = document.getElementById('island-quote');
+      const sourceBadge = document.getElementById('island-source-badge');
+
+      if (charEl) charEl.textContent = cue.character;
+      if (actorEl) actorEl.textContent = `• ${cue.actor}`;
+      if (metaEl) metaEl.textContent = cue.meta;
+      if (quoteEl) quoteEl.textContent = cue.quote;
+
+      if (island) {
+        island.classList.remove('w-[240px]', 'sm:w-[300px]', 'rounded-[24px]');
+        island.classList.add('w-[92vw]', 'sm:w-[440px]', 'rounded-[26px]');
+      }
+      if (compact) compact.classList.add('hidden');
+      if (expanded) {
+        expanded.classList.remove('hidden');
+        expanded.classList.add('flex');
+      }
+
+      stopAllMedia();
+      setPlaybackProgress(0);
+
+      if (autoAdvance) {
+        setCardHints('PLAYING SCENE • AUTO-ADVANCING...');
+      }
+
+      const attached = state.sceneClips[cueKey];
+      const staticAssetUrl = MEDIA_CONFIG.audio[cueKey];
+
+      if (attached && attached.url) {
+        if (sourceBadge) sourceBadge.textContent = `STUDIO CLIP // ${attached.fileName.toUpperCase()}`;
+        if (attached.isVideo) {
+          const videoEl = document.getElementById('scene-video-player');
+          const waveEl = document.getElementById('island-waveform');
+          if (waveEl) waveEl.classList.add('hidden');
+          if (videoEl) {
+            videoEl.src = attached.url;
+            videoEl.classList.remove('hidden');
+            videoEl.ontimeupdate = () => {
+              if (videoEl.duration) setPlaybackProgress((videoEl.currentTime / videoEl.duration) * 100);
+            };
+            videoEl.play().catch(() => {
+              if (autoAdvance) runTimedProgressAndAdvance(3600, cue.chapter);
+            });
+            videoEl.onended = () => {
+              setPlaybackProgress(100);
+              videoEl.classList.add('hidden');
+              if (waveEl) waveEl.classList.remove('hidden');
+              resetWaveBars();
+              if (autoAdvance) scheduleAutoAdvanceToNext(cue.chapter);
+            };
+          }
+        } else {
+          playAudioSource(
+            attached.url,
+            cue.foley,
+            sourceBadge,
+            `STUDIO CLIP // ${attached.fileName.toUpperCase()}`,
+            autoAdvance ? cue.chapter : null
+          );
+        }
+      } else if (staticAssetUrl) {
+        playAudioSource(
+          staticAssetUrl,
+          cue.foley,
+          sourceBadge,
+          `ORIGINAL SCENE // ${staticAssetUrl.replace('assets/', '').toUpperCase()}`,
+          autoAdvance ? cue.chapter : null
+        );
+      } else {
+        if (sourceBadge) sourceBadge.textContent = 'SCENE CUE • AUTO-ADVANCING';
+        playTactileFoley(cue.foley);
+        startHarmonicWave(false);
+        foleyTimer = setTimeout(() => {
+          cancelAnimationFrame(waveAnimId);
+          resetWaveBars();
+        }, 1500);
+        if (autoAdvance) {
+          runTimedProgressAndAdvance(3600, cue.chapter);
+        }
+      }
+    }
+
+    function collapseDynamicIsland() {
+      state.islandExpanded = false;
+      const island = document.getElementById('dynamic-island');
+      const compact = document.getElementById('island-compact');
+      const expanded = document.getElementById('island-expanded');
+
+      if (island) {
+        island.classList.add('w-[240px]', 'sm:w-[300px]', 'rounded-[24px]');
+        island.classList.remove('w-[92vw]', 'sm:w-[440px]', 'rounded-[26px]');
+      }
+      if (expanded) {
+        expanded.classList.add('hidden');
+        expanded.classList.remove('flex');
+      }
+      if (compact) compact.classList.remove('hidden');
+    }
+
+    function replayActiveScene() {
+      if (state.activeCueKey) {
+        expandDynamicIsland(state.activeCueKey, false);
+      }
+    }
+
+    function triggerSceneCue(chapterNum, optionIdx) {
+      const cueKey = `${chapterNum}-${optionIdx}`;
+      const cue = SCENE_CUES[cueKey];
+      if (!cue) return;
+
+      state.activeChoiceBtn = document.getElementById(`cue-btn-${chapterNum}-${optionIdx}`);
+      document.querySelectorAll(`.cue-group-${chapterNum}`).forEach((btn, idx) => {
+        btn.classList.remove('active-amber', 'active-cobalt', 'active-crimson', 'active-emerald');
+        const fill = btn.querySelector('.choice-progress-fill');
+        if (fill) fill.style.width = '0%';
+        if (idx === optionIdx) {
+          btn.classList.add(`active-${cue.accent}`);
+        }
+      });
+
+      expandDynamicIsland(cueKey, true);
+    }
+
+    // =========================================================================
+    // 5. CHAPTER-SPECIFIC INTERACTIONS (BOOTH SWITCHER, AUDIT SEAL, DRS, SLIDER)
+    // =========================================================================
+    const BOOTH_PRESETS = [
+      {
+        code: "STARS HOLLOW // LUKE'S DINER",
+        title: 'First Pour, Extra Foam',
+        sub: 'STARS HOLLOW • RESERVED COUNTER'
+      },
+      {
+        code: 'CENTRAL PERK // ORANGE SOFA',
+        title: 'Reserved Sofa Spot',
+        sub: 'OVERSIZED MUGS • NYC'
+      },
+      {
+        code: 'MANHATTAN // APT 20',
+        title: 'Behind the Purple Door',
+        sub: 'YELLOW PEEPHOLE FRAME'
+      }
+    ];
+
+    function switchBooth(idx) {
+      const preset = BOOTH_PRESETS[idx];
+      if (!preset) return;
+      const codeEl = document.getElementById('booth-code');
+      const titleEl = document.getElementById('booth-title');
+      const subEl = document.getElementById('booth-sub');
+      if (codeEl) codeEl.textContent = preset.code;
+      if (titleEl) titleEl.textContent = preset.title;
+      if (subEl) subEl.textContent = preset.sub;
+
+      [0, 1, 2].forEach(i => {
+        const tab = document.getElementById(`booth-tab-${i}`);
+        if (!tab) return;
+        if (i === idx) {
+          tab.className = 'px-2.5 py-0.5 rounded-full bg-amberGlow/25 text-ink font-medium transition';
+        } else {
+          tab.className = 'px-2.5 py-0.5 rounded-full text-mist hover:text-ink transition';
+        }
+      });
+    }
+
+    // Chapter 04: Biometric Audit Seal & Audit Team Sign-Off
+    function triggerAuditSignOff(optionIdx = 0) {
+      state.auditSigned = true;
+
+      const seal = document.getElementById('audit-emerald-seal');
+      if (seal) {
+        seal.classList.remove('hidden');
+        if (seal.firstElementChild) {
+          seal.firstElementChild.classList.add('audit-stamp-anim');
+        }
+      }
+
+      const ringCircle = document.getElementById('biometric-ring-circle');
+      const bioCaption = document.getElementById('biometric-caption');
+      if (ringCircle) ringCircle.style.strokeDashoffset = '0';
+      if (bioCaption) bioCaption.textContent = 'CERTIFIED • UNQUALIFIED OPINION';
+
+      const btnId = optionIdx === 0 ? 'biometric-audit-btn' : `cue-btn-4-${optionIdx}`;
+      state.activeChoiceBtn = document.getElementById(btnId);
+
+      document.querySelectorAll('.cue-group-4').forEach(btn => {
+        btn.classList.remove('active-amber', 'active-cobalt', 'active-crimson', 'active-emerald');
+        const fill = btn.querySelector('.choice-progress-fill');
+        if (fill) fill.style.width = '0%';
+      });
+      if (state.activeChoiceBtn) {
+        state.activeChoiceBtn.classList.add('active-emerald');
+      }
+
+      expandDynamicIsland(`4-${optionIdx}`, true);
+    }
+
+    // Chapter 05: RB19 DRS / 21/22 -> 22/22 Mode Toggle
+    function toggleDrsMode() {
+      state.drsActive = !state.drsActive;
+      const flap = document.getElementById('rb19-drs-flap');
+      const counter = document.getElementById('rb19-win-counter');
+      const dot = document.getElementById('drs-dot');
+      const label = document.getElementById('drs-label');
+
+      if (state.drsActive) {
+        if (flap) flap.style.transform = 'rotate(-28deg)';
+        if (counter) counter.textContent = '22 / 22 EDITION';
+        if (dot) dot.classList.replace('bg-roseCoral', 'bg-amberGlow');
+        if (label) label.textContent = 'DRS OPEN: 22/22 EDITION';
+        playTactileFoley('f1');
+      } else {
+        if (flap) flap.style.transform = 'rotate(0deg)';
+        if (counter) counter.textContent = '21 / 22 WINS';
+        if (dot) dot.classList.replace('bg-amberGlow', 'bg-roseCoral');
+        if (label) label.textContent = 'DRS WING: 21/22 → 22/22 EDITION';
+      }
+    }
+
+    // Chapter 06: Apple Slide-to-Illuminate "22" Light Bar
+    function initLightBarSlider() {
+      const track = document.getElementById('light-slider-track');
+      const thumb = document.getElementById('light-slider-thumb');
+      const fill = document.getElementById('light-slider-fill');
+      const label = document.getElementById('light-slider-label');
+      if (!track || !thumb || !fill || !label) return;
+
+      let dragging = false;
+      let startX = 0;
+      let currentOffset = 0;
+
+      function getMaxOffset() {
+        return Math.max(10, track.clientWidth - thumb.clientWidth - 8);
+      }
+
+      function applySliderOffset(px) {
+        const max = getMaxOffset();
+        const clamped = Math.max(0, Math.min(max, px));
+        currentOffset = clamped;
+        thumb.style.transform = `translateX(${clamped}px)`;
+        fill.style.width = `${clamped + thumb.clientWidth + 4}px`;
+        label.style.opacity = `${Math.max(0, 1 - (clamped / max) * 1.4)}`;
+      }
+
+      function igniteTwentyTwo() {
+        state.illuminated = true;
+        applySliderOffset(getMaxOffset());
+        document.body.classList.add('is-illuminated');
+
+        const statusTag = document.getElementById('signoff-status-tag');
+        const glowEl = document.getElementById('monolith-22-glow');
+        const noteWrap = document.getElementById('closing-note-wrapper');
+        if (statusTag) statusTag.textContent = 'ILLUMINATED ✦';
+        if (glowEl) glowEl.style.opacity = '1';
+        if (noteWrap) {
+          noteWrap.classList.remove('opacity-90');
+          noteWrap.classList.add('opacity-100');
+        }
+
+        playTactileFoley('pub');
+        launchGoldenBokeh();
+      }
+
+      thumb.addEventListener('pointerdown', e => {
+        dragging = true;
+        startX = e.clientX - currentOffset;
+        try {
+          thumb.setPointerCapture(e.pointerId);
+        } catch (_) {}
+        thumb.style.transition = 'none';
+        fill.style.transition = 'none';
+      });
+
+      thumb.addEventListener('pointermove', e => {
+        if (!dragging) return;
+        applySliderOffset(e.clientX - startX);
+      });
+
+      thumb.addEventListener('pointerup', () => {
+        if (!dragging) return;
+        dragging = false;
+        thumb.style.transition = 'transform 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
+        fill.style.transition = 'width 0.45s cubic-bezier(0.22, 1, 0.36, 1)';
+
+        if (currentOffset >= getMaxOffset() * 0.72) {
+          igniteTwentyTwo();
+        } else if (!state.illuminated) {
+          applySliderOffset(0);
+        }
+      });
+
+      track.addEventListener('click', e => {
+        if (e.target === thumb) return;
+        thumb.style.transition = 'transform 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+        fill.style.transition = 'width 0.55s cubic-bezier(0.22, 1, 0.36, 1)';
+        igniteTwentyTwo();
+      });
+    }
+
+    function resetExperience() {
+      cancelAutoAdvance();
+      stopAllMedia();
+      collapseDynamicIsland();
+
+      state.auditSigned = false;
+      state.drsActive = false;
+      state.illuminated = false;
+      state.activeChoiceBtn = null;
+
+      document.querySelectorAll('.apple-choice').forEach(btn => {
+        btn.classList.remove('active-amber', 'active-cobalt', 'active-crimson', 'active-emerald');
+        const fill = btn.querySelector('.choice-progress-fill');
+        if (fill) fill.style.width = '0%';
+      });
+
+      const ringCircle = document.getElementById('biometric-ring-circle');
+      const auditSeal = document.getElementById('audit-emerald-seal');
+      const bioCaption = document.getElementById('biometric-caption');
+      if (ringCircle) ringCircle.style.strokeDashoffset = '251.33';
+      if (auditSeal) auditSeal.classList.add('hidden');
+      if (bioCaption) bioCaption.textContent = 'TAP TO STAMP & SIGN OFF';
+
+      const flap = document.getElementById('rb19-drs-flap');
+      const counter = document.getElementById('rb19-win-counter');
+      const dot = document.getElementById('drs-dot');
+      const label = document.getElementById('drs-label');
+      if (flap) flap.style.transform = 'rotate(0deg)';
+      if (counter) counter.textContent = '21 / 22 WINS';
+      if (dot) dot.classList.replace('bg-amberGlow', 'bg-roseCoral');
+      if (label) label.textContent = 'DRS WING: 21/22 → 22/22 EDITION';
+
+      document.body.classList.remove('is-illuminated');
+      const statusTag = document.getElementById('signoff-status-tag');
+      const glowEl = document.getElementById('monolith-22-glow');
+      const noteWrap = document.getElementById('closing-note-wrapper');
+      const thumb = document.getElementById('light-slider-thumb');
+      const fill = document.getElementById('light-slider-fill');
+      const sLabel = document.getElementById('light-slider-label');
+
+      if (statusTag) statusTag.textContent = 'READY TO ILLUMINATE';
+      if (glowEl) glowEl.style.opacity = '0.35';
+      if (noteWrap) noteWrap.classList.add('opacity-90');
+      if (thumb) thumb.style.transform = 'translateX(0px)';
+      if (fill) fill.style.width = '48px';
+      if (sLabel) sLabel.style.opacity = '1';
+
+      goToChapter(1);
+    }
+
+    // =========================================================================
+    // 6. STUDIO DRAWER, 4 PHOTO SLOTS, ORIGINAL SCENE CLIPS & CLEAN VIEW
+    // =========================================================================
+    function openStudioDrawer() {
+      cancelAutoAdvance();
+      const backdrop = document.getElementById('studio-backdrop');
+      const drawer = document.getElementById('studio-drawer');
+      if (backdrop) backdrop.classList.remove('hidden');
+      if (drawer) drawer.classList.remove('translate-x-full');
+    }
+
+    function closeStudioDrawer() {
+      const backdrop = document.getElementById('studio-backdrop');
+      const drawer = document.getElementById('studio-drawer');
+      if (backdrop) backdrop.classList.add('hidden');
+      if (drawer) drawer.classList.add('translate-x-full');
+    }
+
+    function toggleCleanView() {
+      state.cleanView = !state.cleanView;
+      document.body.classList.toggle('clean-view', state.cleanView);
+      const btn = document.getElementById('clean-view-btn');
+      const label = document.getElementById('clean-view-label');
+
+      if (state.cleanView) {
+        if (btn) btn.classList.add('bg-white/15', 'text-ink');
+        if (label) label.textContent = 'Clean View: ON';
+        showToast('Clean View active');
+      } else {
+        if (btn) btn.classList.remove('bg-white/15', 'text-ink');
+        if (label) label.textContent = 'Clean View';
+        showToast('Studio controls visible');
+      }
+    }
+
+    function handleNameChange(raw) {
+      state.recipientName = raw.trim() || DEFAULT_RECIPIENT;
+      const upper = state.recipientName.toUpperCase();
+      const brandEl = document.getElementById('island-brand');
+      const heroWord = document.getElementById('hero-recipient-word');
+      if (brandEl) brandEl.textContent = `${upper} // 22.11`;
+      if (heroWord) heroWord.textContent = `${state.recipientName}.`;
+      document.querySelectorAll('.recipient-upper').forEach(el => {
+        el.textContent = upper;
+      });
+      try {
+        localStorage.setItem('v22_recipient_name', state.recipientName);
+      } catch (_) {}
+    }
+
+    function handleNoteChange(val) {
+      state.closingNote = val;
+      const noteEl = document.getElementById('closing-note-display');
+      if (noteEl) noteEl.textContent = val;
+      try {
+        localStorage.setItem('v22_closing_note', val);
+      } catch (_) {}
+    }
+
+    function handleSlotClick(slotNum) {
+      if (state.cleanView) return;
+      state.pendingPhotoSlot = slotNum;
+      const picker = document.getElementById('direct-photo-picker');
+      if (picker) {
+        picker.value = '';
+        picker.click();
+      }
+    }
+
+    const directPhotoPicker = document.getElementById('direct-photo-picker');
+    if (directPhotoPicker) {
+      directPhotoPicker.addEventListener('change', e => {
+        const file = e.target.files && e.target.files[0];
+        if (file) processPhotoFile(file, state.pendingPhotoSlot);
+      });
+    }
+
+    function handleStudioPhotoUpload(e, slotNum) {
+      const file = e.target.files && e.target.files[0];
+      if (file) processPhotoFile(file, slotNum);
+    }
+
+    function processPhotoFile(file, slotNum) {
+      const reader = new FileReader();
+      reader.onload = ev => {
+        state.photos[slotNum] = ev.target.result;
+        renderPhotoSlot(slotNum);
+        persistPhotos();
+        showToast(`Frame 0${slotNum} updated`);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function clearPhotoSlot(slotNum) {
+      state.photos[slotNum] = '';
+      renderPhotoSlot(slotNum);
+      persistPhotos();
+      showToast(`Frame 0${slotNum} cleared`);
+    }
+
+    function renderPhotoSlot(slotNum) {
+      const img = document.getElementById(`slot-img-${slotNum}`);
+      const art = document.getElementById(`slot-art-${slotNum}`);
+      if (!img || !art) return;
+
+      const candidateSrc = state.photos[slotNum] || MEDIA_CONFIG.photos[`photo${slotNum}`];
+
+      if (candidateSrc) {
+        img.onload = () => {
+          img.classList.remove('hidden');
+          art.classList.add('hidden');
+        };
+        img.onerror = () => {
+          img.classList.add('hidden');
+          art.classList.remove('hidden');
+        };
+        img.src = candidateSrc;
+      } else {
+        img.src = '';
+        img.classList.add('hidden');
+        art.classList.remove('hidden');
+      }
+    }
+
+    function buildStudioClipList() {
+      const container = document.getElementById('studio-clip-list');
+      if (!container) return;
+      container.innerHTML = '';
+
+      Object.entries(SCENE_CUES).forEach(([key, cue]) => {
+        const attached = state.sceneClips[key];
+        const expectedPath = MEDIA_CONFIG.audio[key] || '';
+        const row = document.createElement('div');
+        row.className = 'p-2.5 rounded-xl bg-black/45 border border-white/10 flex items-center justify-between gap-2';
+        row.innerHTML = `
+          <div class="min-w-0">
+            <span class="block font-sans text-xs font-medium text-ink truncate">
+              Ch 0${cue.chapter} • ${cue.character}
+            </span>
+            <span class="block font-mono text-[9.5px] text-amberGlow/90 truncate">
+              ${attached ? attached.fileName : expectedPath}
+            </span>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <button type="button" onclick="expandDynamicIsland('${key}', false)" title="Preview cue"
+              class="px-2 py-1 rounded-lg bg-white/[0.06] hover:bg-white/[0.14] font-mono text-[10px] text-ink transition">
+              ▶
+            </button>
+            <label class="px-2.5 py-1 rounded-lg bg-white/[0.08] hover:bg-white/[0.15] font-mono text-[10px] text-amberGlow cursor-pointer transition">
+              ${attached ? 'Replace' : 'Preview File'}
+              <input type="file" accept="audio/*,video/*" onchange="attachSceneClip(event, '${key}')" class="hidden" />
+            </label>
+          </div>
+        `;
+        container.appendChild(row);
+      });
+    }
+
+    function attachSceneClip(e, cueKey) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+
+      if (state.sceneClips[cueKey] && state.sceneClips[cueKey].url) {
+        URL.revokeObjectURL(state.sceneClips[cueKey].url);
+      }
+
+      const objectUrl = URL.createObjectURL(file);
+      const isVideo = file.type.startsWith('video/');
+      state.sceneClips[cueKey] = {
+        url: objectUrl,
+        isVideo,
+        fileName: file.name
+      };
+
+      buildStudioClipList();
+      showToast(`Attached clip to ${SCENE_CUES[cueKey].character}`);
+      expandDynamicIsland(cueKey, false);
+    }
+
+    // =========================================================================
+    // 7. INERTIAL 3D PARALLAX & SPECULAR SHEEN LERP LOOP
+    // =========================================================================
+    const tiltState = {
+      targetX: 0,
+      targetY: 0,
+      currentX: 0,
+      currentY: 0,
+      sheenX: 50,
+      sheenY: 35,
+      targetSheenX: 50,
+      targetSheenY: 35
+    };
+
+    document.addEventListener('pointermove', e => {
+      if (e.pointerType === 'touch') return;
+      const nx = (e.clientX / window.innerWidth) * 2 - 1;
+      const ny = (e.clientY / window.innerHeight) * 2 - 1;
+      tiltState.targetY = nx * 3.8;
+      tiltState.targetX = -ny * 3.2;
+      tiltState.targetSheenX = (e.clientX / window.innerWidth) * 100;
+      tiltState.targetSheenY = (e.clientY / window.innerHeight) * 100;
+    });
+
+    document.addEventListener('pointerleave', () => {
+      tiltState.targetX = 0;
+      tiltState.targetY = 0;
+    });
+
+    function runParallaxLoop() {
+      tiltState.currentX += (tiltState.targetX - tiltState.currentX) * 0.085;
+      tiltState.currentY += (tiltState.targetY - tiltState.currentY) * 0.085;
+      tiltState.sheenX += (tiltState.targetSheenX - tiltState.sheenX) * 0.1;
+      tiltState.sheenY += (tiltState.targetSheenY - tiltState.sheenY) * 0.1;
+
+      const root = document.documentElement;
+      root.style.setProperty('--tilt-x', `${tiltState.currentX.toFixed(3)}deg`);
+      root.style.setProperty('--tilt-y', `${tiltState.currentY.toFixed(3)}deg`);
+      root.style.setProperty('--sheen-x', `${tiltState.sheenX.toFixed(1)}%`);
+      root.style.setProperty('--sheen-y', `${tiltState.sheenY.toFixed(1)}%`);
+
+      const sheenStop = document.getElementById('titanium-sheen-stop');
+      if (sheenStop) {
+        const pct = Math.max(15, Math.min(85, tiltState.sheenX));
+        sheenStop.setAttribute('offset', `${pct.toFixed(0)}%`);
+      }
+
+      requestAnimationFrame(runParallaxLoop);
+    }
+
+    // =========================================================================
+    // 8. SUBTLE GOLDEN BOKEH CANVAS (CHAPTER 06 ILLUMINATION)
+    // =========================================================================
+    const bokehCanvas = document.getElementById('bokeh-canvas');
+    const bCtx = bokehCanvas ? bokehCanvas.getContext('2d') : null;
+    let bokehMotes = [];
+    let bokehLoopRunning = false;
+
+    function resizeBokehCanvas() {
+      if (!bokehCanvas) return;
+      bokehCanvas.width = window.innerWidth;
+      bokehCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeBokehCanvas);
+    resizeBokehCanvas();
+
+    function launchGoldenBokeh() {
+      if (!bCtx || !bokehCanvas) return;
+      const colors = [
+        'rgba(255, 184, 0, 0.78)',
+        'rgba(253, 230, 138, 0.68)',
+        'rgba(255, 59, 107, 0.55)',
+        'rgba(255, 255, 255, 0.55)'
+      ];
+      for (let i = 0; i < 48; i++) {
+        bokehMotes.push({
+          x: window.innerWidth * (0.2 + Math.random() * 0.6),
+          y: window.innerHeight * (0.55 + Math.random() * 0.25),
+          vx: (Math.random() - 0.5) * 1.6,
+          vy: -0.7 - Math.random() * 1.9,
+          radius: 2 + Math.random() * 6.5,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          alpha: 0.92
+        });
+      }
+      if (!bokehLoopRunning) {
+        bokehLoopRunning = true;
+        requestAnimationFrame(tickBokeh);
+      }
+    }
+
+    function tickBokeh() {
+      if (!bCtx || !bokehCanvas) return;
+      bCtx.clearRect(0, 0, bokehCanvas.width, bokehCanvas.height);
+      bokehMotes.forEach(m => {
+        m.x += m.vx;
+        m.y += m.vy;
+        m.alpha -= 0.0085;
+
+        bCtx.save();
+        bCtx.globalAlpha = Math.max(0, m.alpha);
+        bCtx.fillStyle = m.color;
+        bCtx.beginPath();
+        bCtx.arc(m.x, m.y, m.radius, 0, Math.PI * 2);
+        bCtx.fill();
+        bCtx.restore();
+      });
+
+      bokehMotes = bokehMotes.filter(m => m.alpha > 0);
+      if (bokehMotes.length > 0) {
+        requestAnimationFrame(tickBokeh);
+      } else {
+        bokehLoopRunning = false;
+        bCtx.clearRect(0, 0, bokehCanvas.width, bokehCanvas.height);
+      }
+    }
+
+    // =========================================================================
+    // 9. TOAST HELPER & KEYBOARD SHORTCUTS
+    // =========================================================================
+    let toastTimeout = null;
+    function showToast(msg) {
+      const toast = document.getElementById('apple-toast');
+      const textEl = document.getElementById('apple-toast-text');
+      if (!toast || !textEl) return;
+      textEl.textContent = msg;
+      toast.classList.remove('opacity-0', '-translate-y-2');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('opacity-0', '-translate-y-2');
+      }, 2100);
+    }
+
+    document.addEventListener('keydown', e => {
+      if (document.activeElement && ['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) return;
+      if (e.key === 'ArrowRight' && state.currentChapter < state.totalChapters) {
+        navigateChapter(1);
+      } else if (e.key === 'ArrowLeft' && state.currentChapter > 1) {
+        navigateChapter(-1);
+      }
+    });
+
+    // =========================================================================
+    // 10. INITIALIZATION
+    // =========================================================================
+    window.addEventListener('DOMContentLoaded', () => {
+      loadSavedState();
+
+      const nameInput = document.getElementById('studio-name-input');
+      const noteInput = document.getElementById('studio-note-input');
+      if (nameInput) nameInput.value = state.recipientName;
+      if (noteInput) noteInput.value = state.closingNote;
+      handleNameChange(state.recipientName);
+      handleNoteChange(state.closingNote);
+
+      [1, 2, 3, 4].forEach(slot => renderPhotoSlot(slot));
+      buildStudioClipList();
+      renderProgressIndicators();
+      initLightBarSlider();
+      requestAnimationFrame(runParallaxLoop);
+    });
+  </script>
+</body>
+</html>
