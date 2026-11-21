@@ -144,7 +144,7 @@
         0 16px 36px -12px rgba(4, 3, 15, 0.65);
     }
 
-    /* Slide 01 Dedicated Apple Liquid Glass Portrait Frame */
+    /* Dedicated Apple Liquid Glass Portrait Frame */
     .hero-portrait-frame {
       background: linear-gradient(160deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 184, 0, 0.08) 45%, rgba(168, 85, 247, 0.14) 100%);
       border: 1px solid rgba(255, 255, 255, 0.24);
@@ -356,7 +356,7 @@
       animation: stampDrop 0.45s var(--spring-apple) forwards;
     }
 
-    /* Golden-Hour Illumination Aura for Chapter 06 */
+    /* Golden-Hour Illumination Aura for Chapter 06 & Finale */
     .golden-horizon {
       opacity: 0;
       transition: opacity 1.1s var(--spring-apple);
@@ -397,10 +397,10 @@
        ========================================================================= -->
   <div class="relative z-10 w-screen h-[100dvh] flex flex-col justify-between overflow-hidden">
 
-    <!-- 1. TOP HEADER BAR: 6 PROGRESS PILLS (LEFT) + DYNAMIC ISLAND (CENTER) + AMBIENT AUDIO & DATE (RIGHT) -->
+    <!-- 1. TOP HEADER BAR: PROGRESS PILLS (LEFT) + DYNAMIC ISLAND (CENTER) + AMBIENT AUDIO & DATE (RIGHT) -->
     <header class="relative z-30 pt-2.5 sm:pt-3.5 px-3.5 sm:px-6 flex items-start justify-between gap-2 shrink-0 min-h-[52px]">
 
-      <!-- Left: 6 Interactive Progress Pills + Chapter Telemetry -->
+      <!-- Left: Interactive Progress Pills + Chapter Telemetry -->
       <div class="hidden sm:flex items-center gap-2.5 pt-2 shrink-0">
         <div id="top-progress-pills" class="flex items-center gap-1.5" aria-label="Chapter progress"></div>
         <span id="top-chapter-code" class="font-mono text-[10.5px] tracking-[0.14em] text-mist">01 / 06</span>
@@ -624,7 +624,7 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-amberGlow animate-pulse"></span>
                     <span class="chapter-hint-text">TAP AN OPTION TO PLAY &amp; CONTINUE</span>
                   </span>
-                  <span class="text-white/45">01 / 06</span>
+                  <span class="text-white/45 chapter-counter-inline">01 / 06</span>
                 </div>
               </div>
             </div>
@@ -1069,7 +1069,7 @@
         </section>
 
         <!-- ===================================================================
-             CHAPTER 06: 06 / 06 — 22.11 // SIGN-OFF
+             CHAPTER 06: 06 / 06 — 22.11 // SIGN-OFF (SLIDE TO ILLUMINATE -> CHAPTER 07)
              =================================================================== -->
         <section id="chapter-6" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
           <div class="specular-sheen"></div>
@@ -1077,7 +1077,7 @@
           <div class="relative z-10 flex flex-col justify-between items-center text-center gap-3.5 sm:gap-5 max-w-lg mx-auto">
             <!-- Top Metadata -->
             <div class="w-full flex items-center justify-between font-mono text-[10px] sm:text-[11px] tracking-[0.14em] text-amberGlow">
-              <span>06 / 06 — 22.11 // SIGN-OFF</span>
+              <span id="chapter-6-header">06 / 06 — 22.11 // SIGN-OFF</span>
               <span id="signoff-status-tag" class="text-roseCoral">READY TO ILLUMINATE</span>
             </div>
 
@@ -1135,6 +1135,101 @@
           </div>
         </section>
 
+        <!-- ===================================================================
+             CHAPTER 07 (POST-ILLUMINATION FINALE): PONVASANTHAM // VAANAM MELLA
+             =================================================================== -->
+        <section id="chapter-7" class="chapter-view liquid-glass rounded-[28px] p-4 sm:p-7 md:p-8 overflow-hidden">
+          <div class="specular-sheen"></div>
+
+          <div class="relative z-10 flex flex-col justify-between gap-3.5 sm:gap-5">
+            <!-- Top Metadata Bar -->
+            <div class="flex items-center justify-between gap-2 font-mono text-[10px] sm:text-[11px] tracking-[0.14em] text-amberGlow">
+              <span class="truncate">07 / 07 — PONVASANTHAM // FINALE</span>
+              <span class="text-roseCoral shrink-0">22.11 • ENCORE</span>
+            </div>
+
+            <!-- Split Grid: Cafe Portrait Frame (`assets/photo5.jpg`) + Vaanam Mella Track Card -->
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
+              <!-- Left: Dedicated 4:5 Apple Liquid Glass Frame for the Uploaded Cafe Photo -->
+              <div class="md:col-span-5 flex justify-center">
+                <div class="hero-portrait-frame relative w-44 sm:w-52 md:w-full md:max-w-[260px] aspect-[4/5] max-h-[210px] sm:max-h-[250px] md:max-h-[325px] rounded-[24px] p-1.5 overflow-hidden transition-transform duration-500 hover:scale-[1.015]">
+                  <div class="absolute -inset-3 opacity-60 pointer-events-none blur-xl"
+                    style="background: radial-gradient(circle at 25% 20%, rgba(255,184,0,0.48), transparent 55%), radial-gradient(circle at 80% 80%, rgba(255,59,107,0.42), transparent 55%);"></div>
+
+                  <div class="relative w-full h-full rounded-[19px] overflow-hidden bg-obsidian/70 border border-white/20 flex flex-col justify-between">
+                    <img id="slot-img-5" src="" alt="Coffee & Ponvasantham memory" class="hidden absolute inset-0 w-full h-full object-cover object-center" />
+
+                    <!-- Fallback Art if photo5 hasn't loaded yet -->
+                    <div id="slot-art-5" class="w-full h-full flex flex-col justify-between p-3.5 sm:p-4 relative">
+                      <div class="absolute inset-0 opacity-45 pointer-events-none"
+                        style="background: radial-gradient(circle at 30% 25%, rgba(255,184,0,0.34), transparent 60%), radial-gradient(circle at 80% 80%, rgba(255,59,107,0.28), transparent 60%);"></div>
+
+                      <div class="relative z-10 flex items-center justify-between font-mono text-[9px] text-amberGlow">
+                        <span>NEP // 22.11</span>
+                        <span>✦ ENCORE</span>
+                      </div>
+
+                      <div class="relative z-10 my-auto text-center space-y-1">
+                        <p class="display-tracking text-2xl sm:text-3xl font-bold birthday-gradient-text">22.11</p>
+                        <p class="font-mono text-[9.5px] tracking-[0.16em] text-ink/90 uppercase">Ponvasantham</p>
+                      </div>
+
+                      <div class="relative z-10 text-center font-mono text-[9px] tracking-[0.14em] text-mist/90">
+                        COFFEE &amp; NOVEMBER RAIN
+                      </div>
+                    </div>
+
+                    <!-- Floating Glass Tag -->
+                    <div class="absolute bottom-2.5 left-2.5 right-2.5 z-10 flex items-center justify-between gap-1.5">
+                      <span class="px-2.5 py-1 rounded-full bg-black/65 backdrop-blur-md border border-white/20 font-mono text-[9px] font-medium tracking-[0.12em] text-ink truncate">
+                        PONVASANTHAM • 22.11
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right: Headline, Now Playing Vaanam Mella Pill & Grounded Birthday Wish -->
+              <div class="md:col-span-7 flex flex-col justify-center space-y-3 sm:space-y-4 min-w-0">
+                <div>
+                  <h2 class="display-tracking text-2xl sm:text-3xl md:text-[32px] font-bold leading-[1.14]">
+                    <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:40ms">Two</span></span>
+                    <span class="word-mask"><span class="word-inner birthday-gradient-text" style="--d:90ms">coffees,</span></span>
+                    <span class="word-mask"><span class="word-inner text-white" style="--d:140ms">and</span></span>
+                    <span class="word-mask"><span class="word-inner text-white" style="--d:190ms">a</span></span>
+                    <span class="word-mask"><span class="word-inner text-white" style="--d:240ms">favorite</span></span>
+                    <span class="word-mask"><span class="word-inner text-white" style="--d:290ms">track.</span></span>
+                  </h2>
+                </div>
+
+                <!-- Interactive Now-Playing Vaanam Mella Card -->
+                <button type="button" onclick="playVaanamMellaFinale(true)"
+                  class="apple-choice active-amber w-full text-left px-3.5 sm:px-4 py-3 rounded-2xl flex items-center justify-between gap-3">
+                  <div class="relative z-10 flex-1 min-w-0">
+                    <span class="block text-xs sm:text-sm font-semibold text-ink truncate">Vaanam Mella — Neethane En Ponvasantham</span>
+                    <span class="block font-mono text-[10px] text-amberGlow truncate">ILAIYARAAJA • VARUN &amp; NITHYA</span>
+                  </div>
+                  <span id="vaanam-play-badge" class="relative z-10 font-mono text-[10px] font-medium text-amberGlow shrink-0 whitespace-nowrap">♪ PLAYING</span>
+                </button>
+
+                <p class="text-xs sm:text-sm md:text-[15px] text-ink/95 font-normal leading-relaxed">
+                  Wishing you an effortless year ahead—cleared audits, purple sectors, and many more coffee breaks like this one. Happy Birthday, Vanshika.
+                </p>
+
+                <!-- Card-Footer Controls -->
+                <div class="pt-1.5 border-t border-white/[0.12] flex items-center justify-between font-mono text-[10px] text-mist">
+                  <button type="button" onclick="navigateChapter(-1)" class="text-mist hover:text-ink transition">← PREV</button>
+                  <span class="text-amberGlow">VANSHIKA // 22.11</span>
+                  <button type="button" onclick="resetExperience()"
+                    class="px-3.5 py-1 rounded-full bg-white/[0.08] hover:bg-white/[0.16] border border-white/15 text-ink transition active:scale-95">
+                    Replay ↺
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
       </div>
     </main>
 
@@ -1149,11 +1244,13 @@
     // =========================================================================
     const MEDIA_CONFIG = {
       bgm: 'assets/bgm.mp3',
+      vaanamMella: 'assets/vaanam-mella.mp3',
       photos: {
         photo1: 'assets/photo1.jpg',
         photo2: 'assets/photo2.jpg',
         photo3: 'assets/photo3.jpg',
-        photo4: 'assets/photo4.jpg'
+        photo4: 'assets/photo4.jpg',
+        photo5: 'assets/photo5.jpg'
       },
       audio: {
         '1-0': 'assets/luke-coffee.mp3',
@@ -1169,7 +1266,8 @@
         '4-1': 'assets/audit-bell.mp3',
         '4-2': 'assets/audit-bell.mp3',
         '5-0': 'assets/gp-radio.mp3',
-        '5-1': 'assets/max-radio.mp3'
+        '5-1': 'assets/max-radio.mp3',
+        '7-0': 'assets/vaanam-mella.mp3'
       }
     };
 
@@ -1320,6 +1418,16 @@
         quote: '“Haha, yes! Ah, nice job guys! That’s an amazing weekend so far. Really proud of everyone. This was really enjoyable to drive, and on a track where in the past it was a bit more difficult, so really well done.”',
         accent: 'amber',
         foley: 'f1'
+      },
+      '7-0': {
+        chapter: 7,
+        index: 0,
+        character: 'Vaanam Mella',
+        actor: 'Ilaiyaraaja',
+        meta: 'NEETHANE EN PONVASANTHAM • GVM',
+        quote: '“Some days just feel like a Gautham Menon scene—good coffee, November rain, and the right soundtrack.”',
+        accent: 'amber',
+        foley: 'pub'
       }
     };
 
@@ -1339,7 +1447,8 @@
       illuminated: false,
       bgmStarted: false,
       bgmMuted: false,
-      isDialoguePlaying: false
+      isDialoguePlaying: false,
+      vaanamPlaying: false
     };
 
     // =========================================================================
@@ -1387,6 +1496,13 @@
         t: 'radial-gradient(circle, rgba(255,184,0,0.32), transparent 70%)',
         pt: 'translate3d(45px, 25px, 0px)',
         st: 'translate3d(-45px, -20px, 0px)'
+      },
+      7: {
+        p: 'radial-gradient(circle, rgba(255,184,0,0.52), rgba(251,146,60,0.26) 55%, transparent 72%)',
+        s: 'radial-gradient(circle, rgba(255,59,107,0.42), rgba(255,184,0,0.22) 55%, transparent 72%)',
+        t: 'radial-gradient(circle, rgba(255,215,128,0.34), transparent 70%)',
+        pt: 'translate3d(35px, 20px, 0px)',
+        st: 'translate3d(-35px, -20px, 0px)'
       }
     };
 
@@ -1412,10 +1528,17 @@
       const desktopPills = document.getElementById('top-progress-pills');
       const mobileDots = document.getElementById('island-mobile-dots');
       const topCode = document.getElementById('top-chapter-code');
+      const ch6Header = document.getElementById('chapter-6-header');
 
       if (topCode) {
         topCode.textContent = `0${state.currentChapter} / 0${state.totalChapters}`;
       }
+      if (ch6Header) {
+        ch6Header.textContent = `06 / 0${state.totalChapters} — 22.11 // SIGN-OFF`;
+      }
+      document.querySelectorAll('.chapter-counter-inline').forEach(el => {
+        el.textContent = `01 / 0${state.totalChapters}`;
+      });
 
       if (desktopPills) {
         desktopPills.innerHTML = '';
@@ -1493,6 +1616,13 @@
       setCardHints('TAP AN OPTION TO PLAY & CONTINUE');
       updateAmbientOrbs(targetNum);
       renderProgressIndicators();
+
+      if (targetNum === 7) {
+        playVaanamMellaFinale(false);
+      } else if (!state.bgmMuted) {
+        unlockAndStartBgm();
+        fadeBgmTo(BGM_IDLE_VOL, 900);
+      }
     }
 
     function navigateChapter(delta) {
@@ -1565,6 +1695,7 @@
 
     function setDialogueDucking(isPlaying) {
       state.isDialoguePlaying = isPlaying;
+      if (state.currentChapter === 7) return;
       if (!state.bgmStarted || state.bgmMuted) return;
       if (isPlaying) {
         fadeBgmTo(BGM_DUCK_VOL, 280);
@@ -1574,7 +1705,7 @@
     }
 
     function unlockAndStartBgm() {
-      if (state.bgmMuted || state.bgmStarted) return;
+      if (state.bgmMuted || state.bgmStarted || state.currentChapter === 7) return;
       const bgmEl = document.getElementById('bgm-player');
       if (!bgmEl || !MEDIA_CONFIG.bgm) return;
 
@@ -1601,6 +1732,7 @@
 
     function toggleBgmMute() {
       const bgmEl = document.getElementById('bgm-player');
+      const sceneEl = document.getElementById('scene-audio-player');
       const btn = document.getElementById('bgm-toggle-btn');
       const icon = document.getElementById('bgm-icon');
       state.bgmMuted = !state.bgmMuted;
@@ -1612,10 +1744,21 @@
         fadeBgmTo(0, 350, () => {
           if (state.bgmMuted && bgmEl) bgmEl.pause();
         });
+        if (state.currentChapter === 7 && sceneEl) {
+          sceneEl.pause();
+          cancelAnimationFrame(waveAnimId);
+          resetWaveBars();
+          const badge = document.getElementById('vaanam-play-badge');
+          if (badge) badge.textContent = 'MUTED';
+        }
       } else {
         if (icon) icon.textContent = '♪';
         if (btn) btn.classList.replace('text-mist/50', 'text-amberGlow');
-        unlockAndStartBgm();
+        if (state.currentChapter === 7) {
+          playVaanamMellaFinale(false);
+        } else {
+          unlockAndStartBgm();
+        }
       }
     }
 
@@ -1630,7 +1773,7 @@
 
       const gestureEvents = ['click', 'touchend', 'keydown'];
       const handleGesture = () => {
-        if (!state.bgmStarted && !state.bgmMuted) {
+        if (!state.bgmStarted && !state.bgmMuted && state.currentChapter !== 7) {
           unlockAndStartBgm();
         }
         if (state.bgmStarted) {
@@ -1770,10 +1913,12 @@
         if (audioEl) {
           audioEl.onerror = null;
           audioEl.onended = null;
+          audioEl.loop = false;
           audioEl.pause();
           audioEl.currentTime = 0;
         }
       } catch (_) {}
+      state.vaanamPlaying = false;
       clearTimeout(foleyTimer);
       cancelAnimationFrame(waveAnimId);
       resetWaveBars();
@@ -1863,6 +2008,7 @@
       try {
         audioEl.onerror = null;
         audioEl.onended = null;
+        audioEl.loop = false;
         audioEl.src = url;
         audioEl.volume = 0.55; // Balanced dialogue volume relative to BGM
 
@@ -1903,7 +2049,103 @@
       }
     }
 
+    // Chapter 07 Dedicated Finale Track ("Vaanam Mella")
+    function playVaanamMellaFinale(restartFromZero = false) {
+      const cue = SCENE_CUES['7-0'];
+      const audioEl = document.getElementById('scene-audio-player');
+      const bgmEl = document.getElementById('bgm-player');
+      const playBadge = document.getElementById('vaanam-play-badge');
+
+      // Fade out background track cleanly so Vaanam Mella plays solo
+      fadeBgmTo(0, 500, () => {
+        if (bgmEl && state.currentChapter === 7) {
+          bgmEl.pause();
+          state.bgmStarted = false;
+        }
+      });
+
+      // Expand Dynamic Island with Vaanam Mella metadata
+      state.activeCueKey = '7-0';
+      state.islandExpanded = true;
+
+      const island = document.getElementById('dynamic-island');
+      const compact = document.getElementById('island-compact');
+      const expanded = document.getElementById('island-expanded');
+      const charEl = document.getElementById('island-character');
+      const actorEl = document.getElementById('island-actor');
+      const metaEl = document.getElementById('island-meta');
+      const quoteEl = document.getElementById('island-quote');
+      const sourceBadge = document.getElementById('island-source-badge');
+
+      if (charEl) charEl.textContent = cue.character;
+      if (actorEl) actorEl.textContent = `• ${cue.actor}`;
+      if (metaEl) metaEl.textContent = cue.meta;
+      if (quoteEl) quoteEl.textContent = cue.quote;
+
+      if (island) {
+        island.classList.remove('w-[240px]', 'sm:w-[300px]', 'rounded-[24px]');
+        island.classList.add('w-[92vw]', 'sm:w-[440px]', 'rounded-[26px]');
+      }
+      if (compact) compact.classList.add('hidden');
+      if (expanded) {
+        expanded.classList.remove('hidden');
+        expanded.classList.add('flex');
+      }
+
+      if (state.bgmMuted) {
+        if (sourceBadge) sourceBadge.textContent = 'MUTED • TAP ♪ TOP-RIGHT TO UNMUTE';
+        if (playBadge) playBadge.textContent = 'MUTED';
+        return;
+      }
+
+      if (!audioEl) return;
+
+      try {
+        audioEl.onerror = null;
+        audioEl.onended = null;
+        if (!audioEl.src.endsWith(MEDIA_CONFIG.vaanamMella) || restartFromZero) {
+          audioEl.src = MEDIA_CONFIG.vaanamMella;
+          audioEl.currentTime = 0;
+        }
+        audioEl.loop = true;
+        audioEl.volume = 0.45;
+
+        const syncTrackProgress = () => {
+          if (!audioEl.paused && audioEl.duration && isFinite(audioEl.duration)) {
+            setPlaybackProgress((audioEl.currentTime / audioEl.duration) * 100);
+            progressRafId = requestAnimationFrame(syncTrackProgress);
+          }
+        };
+
+        audioEl.onerror = () => {
+          if (sourceBadge) sourceBadge.textContent = 'UPLOAD assets/vaanam-mella.mp3';
+          if (playBadge) playBadge.textContent = '♪ READY';
+          playTactileFoley('pub');
+        };
+
+        const p = audioEl.play();
+        if (p !== undefined) {
+          p.then(() => {
+            state.vaanamPlaying = true;
+            if (sourceBadge) sourceBadge.textContent = 'SOUNDTRACK // VAANAM-MELLA.MP3';
+            if (playBadge) playBadge.textContent = '♪ PLAYING';
+            startHarmonicWave();
+            cancelAnimationFrame(progressRafId);
+            progressRafId = requestAnimationFrame(syncTrackProgress);
+          }).catch(() => {
+            if (sourceBadge) sourceBadge.textContent = 'TAP CARD TO PLAY VAANAM MELLA';
+            if (playBadge) playBadge.textContent = '▶ PLAY';
+          });
+        }
+      } catch (_) {}
+    }
+
     function expandDynamicIsland(cueKey, autoAdvance = false) {
+      if (cueKey === '7-0') {
+        playVaanamMellaFinale(true);
+        return;
+      }
+
       const cue = SCENE_CUES[cueKey];
       if (!cue) return;
 
@@ -1988,6 +2230,10 @@
     }
 
     function replayActiveScene() {
+      if (state.currentChapter === 7 || state.activeCueKey === '7-0') {
+        playVaanamMellaFinale(true);
+        return;
+      }
       unlockAndStartBgm();
       if (state.activeCueKey) {
         expandDynamicIsland(state.activeCueKey, false);
@@ -2110,7 +2356,7 @@
       }
     }
 
-    // Chapter 06: Butter-Smooth Apple Slide-to-Illuminate "22" Light Bar
+    // Chapter 06: Butter-Smooth Apple Slide-to-Illuminate "22" Light Bar -> Unlocks Chapter 07
     function initLightBarSlider() {
       const track = document.getElementById('light-slider-track');
       const thumb = document.getElementById('light-slider-thumb');
@@ -2155,10 +2401,14 @@
         applySliderOffset(maxOffset);
         document.body.classList.add('is-illuminated');
 
+        // Unlock the surprise 7th Ponvasantham finale chapter
+        state.totalChapters = 7;
+        renderProgressIndicators();
+
         const statusTag = document.getElementById('signoff-status-tag');
         const glowEl = document.getElementById('monolith-22-glow');
         const noteWrap = document.getElementById('closing-note-wrapper');
-        if (statusTag) statusTag.textContent = 'ILLUMINATED ✦';
+        if (statusTag) statusTag.textContent = 'PONVASANTHAM ✦';
         if (glowEl) glowEl.style.opacity = '1';
         if (noteWrap) {
           noteWrap.classList.remove('opacity-90');
@@ -2167,6 +2417,14 @@
 
         playTactileFoley('pub');
         launchGoldenBokeh();
+
+        // Crossfade from BGM into Vaanam Mella and glide to Chapter 07
+        fadeBgmTo(0, 800);
+        setTimeout(() => {
+          if (state.illuminated && state.currentChapter === 6) {
+            goToChapter(7);
+          }
+        }, 1050);
       }
 
       function startDrag(e) {
@@ -2240,13 +2498,16 @@
       stopAllMedia();
       collapseDynamicIsland();
 
+      state.totalChapters = 6;
       state.auditSigned = false;
       state.drsActive = false;
       state.illuminated = false;
       state.activeChoiceBtn = null;
 
       document.querySelectorAll('.apple-choice').forEach(btn => {
-        btn.classList.remove('active-amber', 'active-cobalt', 'active-crimson', 'active-emerald');
+        if (!btn.closest('#chapter-7')) {
+          btn.classList.remove('active-amber', 'active-cobalt', 'active-crimson', 'active-emerald');
+        }
         const fill = btn.querySelector('.choice-progress-fill');
         if (fill) fill.style.width = '0%';
       });
@@ -2286,7 +2547,7 @@
     }
 
     // =========================================================================
-    // 7. STATIC PHOTO LOADER (assets/photo1–4.jpg)
+    // 7. STATIC PHOTO LOADER (AUTO-SUPPORTS BOTH .JPG AND .JPEG)
     // =========================================================================
     function renderPhotoSlot(slotNum) {
       const img = document.getElementById(`slot-img-${slotNum}`);
@@ -2296,11 +2557,17 @@
       const candidateSrc = MEDIA_CONFIG.photos[`photo${slotNum}`];
 
       if (candidateSrc) {
+        let triedJpegFallback = false;
         img.onload = () => {
           img.classList.remove('hidden');
           art.classList.add('hidden');
         };
         img.onerror = () => {
+          if (!triedJpegFallback && candidateSrc.endsWith('.jpg')) {
+            triedJpegFallback = true;
+            img.src = candidateSrc.replace(/\.jpg$/, '.jpeg');
+            return;
+          }
           img.classList.add('hidden');
           art.classList.remove('hidden');
         };
@@ -2441,7 +2708,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      [1, 2, 3, 4].forEach(slot => renderPhotoSlot(slot));
+      [1, 2, 3, 4, 5].forEach(slot => renderPhotoSlot(slot));
       renderProgressIndicators();
       initLightBarSlider();
       setupBackgroundAmbience();
