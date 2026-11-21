@@ -373,8 +373,8 @@
   <canvas id="bokeh-canvas" class="fixed inset-0 z-30 pointer-events-none w-full h-full"></canvas>
 
   <!-- Hidden Scene Dialogue Audio & Subtle Ambient Background Audio -->
-  <audio id="scene-audio-player" preload="none" class="hidden"></audio>
-  <audio id="bgm-player" loop preload="auto" class="hidden"></audio>
+  <audio id="scene-audio-player" preload="none" playsinline class="hidden"></audio>
+  <audio id="bgm-player" loop preload="auto" playsinline class="hidden"></audio>
 
   <!-- =========================================================================
        AMBIENT VOLUMETRIC AURORA LIGHT ORBS (DYNAMICALLY SHIFT PER CHAPTER)
@@ -1424,6 +1424,7 @@
           pill.type = 'button';
           pill.title = `Chapter 0${i}`;
           pill.onclick = () => {
+            unlockAndStartBgm();
             cancelAutoAdvance();
             goToChapter(i);
           };
@@ -1447,6 +1448,7 @@
           dot.type = 'button';
           dot.title = `Chapter 0${i}`;
           dot.onclick = () => {
+            unlockAndStartBgm();
             cancelAutoAdvance();
             goToChapter(i);
           };
@@ -1494,6 +1496,7 @@
     }
 
     function navigateChapter(delta) {
+      unlockAndStartBgm();
       cancelAutoAdvance();
       if (delta > 0 && state.currentChapter < state.totalChapters) {
         goToChapter(state.currentChapter + 1);
@@ -1505,8 +1508,8 @@
     // =========================================================================
     // 4. SUBTLE AMBIENT BACKGROUND MUSIC ("PUT YOUR RECORDS ON") + AUTO-DUCKING
     // =========================================================================
-    const BGM_IDLE_VOL = 0.22; // Barely-there room ambience (~5.5% gain)
-    const BGM_DUCK_VOL = 0.04; // Ducks almost silent during actor voice clips
+    const BGM_IDLE_VOL = 0.22; // Balanced room ambience at normal device volume
+    const BGM_DUCK_VOL = 0.04; // Dips softly underneath actor dialogue
     let bgmGainNode = null;
     let bgmSourceConnected = false;
     let bgmFadeRaf = null;
@@ -1571,7 +1574,7 @@
     }
 
     function unlockAndStartBgm() {
-      if (state.bgmMuted) return;
+      if (state.bgmMuted || state.bgmStarted) return;
       const bgmEl = document.getElementById('bgm-player');
       if (!bgmEl || !MEDIA_CONFIG.bgm) return;
 
@@ -1579,14 +1582,17 @@
         bgmEl.src = MEDIA_CONFIG.bgm;
       }
 
-      ensureAudioContext();
-      initBgmWebAudioGain();
-      applyBgmGain(currentBgmLevel);
+      const ctx = ensureAudioContext();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume().catch(() => {});
+      }
 
       const p = bgmEl.play();
       if (p !== undefined) {
         p.then(() => {
           state.bgmStarted = true;
+          initBgmWebAudioGain();
+          applyBgmGain(currentBgmLevel);
           const target = state.isDialoguePlaying ? BGM_DUCK_VOL : BGM_IDLE_VOL;
           fadeBgmTo(target, 1400);
         }).catch(() => {});
@@ -1602,8 +1608,9 @@
       if (state.bgmMuted) {
         if (icon) icon.textContent = '✕';
         if (btn) btn.classList.replace('text-amberGlow', 'text-mist/50');
+        state.bgmStarted = false;
         fadeBgmTo(0, 350, () => {
-          if (bgmEl) bgmEl.pause();
+          if (state.bgmMuted && bgmEl) bgmEl.pause();
         });
       } else {
         if (icon) icon.textContent = '♪';
@@ -1618,18 +1625,19 @@
       bgmEl.src = MEDIA_CONFIG.bgm;
       bgmEl.volume = 0;
 
-      // Attempt gentle autoplay; if browser requires a tap first, unlock seamlessly on first interaction
+      // Desktop browsers may allow immediate start; mobile browsers unlock on click/touchend
       unlockAndStartBgm();
-      const firstGestureEvents = ['pointerdown', 'touchstart', 'keydown'];
-      const handleFirstGesture = () => {
+
+      const gestureEvents = ['click', 'touchend', 'keydown'];
+      const handleGesture = () => {
         if (!state.bgmStarted && !state.bgmMuted) {
           unlockAndStartBgm();
         }
         if (state.bgmStarted) {
-          firstGestureEvents.forEach(evt => document.removeEventListener(evt, handleFirstGesture));
+          gestureEvents.forEach(evt => document.removeEventListener(evt, handleGesture));
         }
       };
-      firstGestureEvents.forEach(evt => document.addEventListener(evt, handleFirstGesture, { passive: true }));
+      gestureEvents.forEach(evt => document.addEventListener(evt, handleGesture, { passive: true }));
     }
 
     // =========================================================================
@@ -1856,7 +1864,7 @@
         audioEl.onerror = null;
         audioEl.onended = null;
         audioEl.src = url;
-        audioEl.volume = 0.55;
+        audioEl.volume = 0.55; // Balanced dialogue volume relative to BGM
 
         const syncAudioProgress = () => {
           if (!audioEl.paused && !audioEl.ended && audioEl.duration && isFinite(audioEl.duration)) {
@@ -1980,12 +1988,14 @@
     }
 
     function replayActiveScene() {
+      unlockAndStartBgm();
       if (state.activeCueKey) {
         expandDynamicIsland(state.activeCueKey, false);
       }
     }
 
     function triggerSceneCue(chapterNum, optionIdx) {
+      unlockAndStartBgm();
       const cueKey = `${chapterNum}-${optionIdx}`;
       const cue = SCENE_CUES[cueKey];
       if (!cue) return;
@@ -2047,6 +2057,7 @@
 
     // Chapter 04: Biometric Audit Seal & Audit Team Sign-Off
     function triggerAuditSignOff(optionIdx = 0) {
+      unlockAndStartBgm();
       state.auditSigned = true;
 
       const seal = document.getElementById('audit-emerald-seal');
