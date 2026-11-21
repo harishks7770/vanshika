@@ -1856,6 +1856,7 @@
         audioEl.onerror = null;
         audioEl.onended = null;
         audioEl.src = url;
+        audioEl.volume = 0.55;
 
         const syncAudioProgress = () => {
           if (!audioEl.paused && !audioEl.ended && audioEl.duration && isFinite(audioEl.duration)) {
