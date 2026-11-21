@@ -1150,7 +1150,7 @@
 
             <!-- Split Grid: Cafe Portrait Frame (`assets/photo5.jpg`) + Vaanam Mella Track Card -->
             <div class="grid grid-cols-1 md:grid-cols-12 gap-4 sm:gap-6 items-center">
-              <!-- Left: Dedicated 4:5 Apple Liquid Glass Frame for the Uploaded Cafe Photo -->
+              <!-- Left: Dedicated 4:5 Apple Liquid Glass Frame for the Cafe Photo -->
               <div class="md:col-span-5 flex justify-center">
                 <div class="hero-portrait-frame relative w-44 sm:w-52 md:w-full md:max-w-[260px] aspect-[4/5] max-h-[210px] sm:max-h-[250px] md:max-h-[325px] rounded-[24px] p-1.5 overflow-hidden transition-transform duration-500 hover:scale-[1.015]">
                   <div class="absolute -inset-3 opacity-60 pointer-events-none blur-xl"
@@ -1425,7 +1425,7 @@
         character: 'Vaanam Mella',
         actor: 'Ilaiyaraaja',
         meta: 'NEETHANE EN PONVASANTHAM • GVM',
-        quote: '“Some days just feel like a Gautham Menon scene—good coffee, November rain, and the right soundtrack.”',
+        quote: '',
         accent: 'amber',
         foley: 'pub'
       }
@@ -1638,8 +1638,8 @@
     // =========================================================================
     // 4. SUBTLE AMBIENT BACKGROUND MUSIC ("PUT YOUR RECORDS ON") + AUTO-DUCKING
     // =========================================================================
-    const BGM_IDLE_VOL = 0.22; // Balanced room ambience at normal device volume
-    const BGM_DUCK_VOL = 0.04; // Dips softly underneath actor dialogue
+    const BGM_IDLE_VOL = 0.22;
+    const BGM_DUCK_VOL = 0.04;
     let bgmGainNode = null;
     let bgmSourceConnected = false;
     let bgmFadeRaf = null;
@@ -1768,7 +1768,6 @@
       bgmEl.src = MEDIA_CONFIG.bgm;
       bgmEl.volume = 0;
 
-      // Desktop browsers may allow immediate start; mobile browsers unlock on click/touchend
       unlockAndStartBgm();
 
       const gestureEvents = ['click', 'touchend', 'keydown'];
@@ -2010,7 +2009,7 @@
         audioEl.onended = null;
         audioEl.loop = false;
         audioEl.src = url;
-        audioEl.volume = 0.55; // Balanced dialogue volume relative to BGM
+        audioEl.volume = 0.55;
 
         const syncAudioProgress = () => {
           if (!audioEl.paused && !audioEl.ended && audioEl.duration && isFinite(audioEl.duration)) {
@@ -2056,7 +2055,6 @@
       const bgmEl = document.getElementById('bgm-player');
       const playBadge = document.getElementById('vaanam-play-badge');
 
-      // Fade out background track cleanly so Vaanam Mella plays solo
       fadeBgmTo(0, 500, () => {
         if (bgmEl && state.currentChapter === 7) {
           bgmEl.pause();
@@ -2064,7 +2062,6 @@
         }
       });
 
-      // Expand Dynamic Island with Vaanam Mella metadata
       state.activeCueKey = '7-0';
       state.islandExpanded = true;
 
@@ -2080,7 +2077,10 @@
       if (charEl) charEl.textContent = cue.character;
       if (actorEl) actorEl.textContent = `• ${cue.actor}`;
       if (metaEl) metaEl.textContent = cue.meta;
-      if (quoteEl) quoteEl.textContent = cue.quote;
+      if (quoteEl) {
+        quoteEl.textContent = cue.quote || '';
+        quoteEl.classList.toggle('hidden', !cue.quote);
+      }
 
       if (island) {
         island.classList.remove('w-[240px]', 'sm:w-[300px]', 'rounded-[24px]');
@@ -2166,7 +2166,10 @@
       if (charEl) charEl.textContent = cue.character;
       if (actorEl) actorEl.textContent = `• ${cue.actor}`;
       if (metaEl) metaEl.textContent = cue.meta;
-      if (quoteEl) quoteEl.textContent = cue.quote;
+      if (quoteEl) {
+        quoteEl.textContent = cue.quote || '';
+        quoteEl.classList.toggle('hidden', !cue.quote);
+      }
 
       if (island) {
         island.classList.remove('w-[240px]', 'sm:w-[300px]', 'rounded-[24px]');
@@ -2401,7 +2404,6 @@
         applySliderOffset(maxOffset);
         document.body.classList.add('is-illuminated');
 
-        // Unlock the surprise 7th Ponvasantham finale chapter
         state.totalChapters = 7;
         renderProgressIndicators();
 
@@ -2418,7 +2420,6 @@
         playTactileFoley('pub');
         launchGoldenBokeh();
 
-        // Crossfade from BGM into Vaanam Mella and glide to Chapter 07
         fadeBgmTo(0, 800);
         setTimeout(() => {
           if (state.illuminated && state.currentChapter === 6) {
